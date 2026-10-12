@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SyncPoint | Automated Appointment Scheduling & Booking Software (SaaS)</title>
+  <meta name="description" content="Eliminate scheduling friction, prevent no-shows with automated WhatsApp & SMS reminders, and synchronize bookings across Google and Outlook calendars 24/7.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+
+  <!-- Google Fonts: Max 2 Font Families (Outfit & Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
+      corePlugins: { preflight: false } // Avoid reset conflicts with Bootstrap and custom CSS
+    }
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===================================================================
+       PAGE PRELOADER
+       =================================================================== -->
+  <div class="page-preloader" id="pagePreloader" aria-hidden="true">
+    <div class="preloader-backdrop"></div>
+    <div class="preloader-card">
+      <div class="preloader-brand-icon">
+        <div class="preloader-orbit"></div>
+        <div class="preloader-orbit-glow"></div>
+        <div class="preloader-icon-core">
+          <svg viewBox="0 0 64 64" width="50" height="50" fill="none">
+            <defs>
+              <linearGradient id="preCalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00A3FF"/>
+                <stop offset="50%" stop-color="#2563EB"/>
+                <stop offset="100%" stop-color="#4F46E5"/>
+              </linearGradient>
+            </defs>
+            <rect x="8" y="10" width="46" height="42" rx="11" fill="url(#preCalGrad)"/>
+            <rect x="18" y="5" width="5" height="11" rx="2.5" fill="#00D2FF"/>
+            <rect x="39" y="5" width="5" height="11" rx="2.5" fill="#38BDF8"/>
+            <rect x="14" y="22" width="34" height="24" rx="5" fill="#FFFFFF" fill-opacity="0.96"/>
+            <rect x="19" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="29" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="39" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="19" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="29" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="39" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <circle cx="49" cy="46" r="10" fill="#2563EB" stroke="#FFFFFF" stroke-width="2.5"/>
+            <path d="M 44.5 46 L 47.5 49 L 53.5 43" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="preloader-brand-title">
+        <span class="preloader-text-sync">Sync</span><span class="preloader-text-point">Point</span>
+      </div>
+      <div class="preloader-progress-track">
+        <div class="preloader-progress-bar"></div>
+      </div>
+      <div class="preloader-caption">
+        <span>Synchronizing workspace</span>
+        <span class="preloader-dots"><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       GLOBAL HEADER & PUBLIC NAVIGATION
+       =================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo" id="brandLogo" aria-label="SyncPoint Homepage">
+        <svg class="brand-logo-svg" viewBox="0 0 198 56" height="42" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SyncPoint">
+          <defs>
+            <linearGradient id="spCalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00A3FF" />
+              <stop offset="50%" stop-color="#2563EB" />
+              <stop offset="100%" stop-color="#4F46E5" />
+            </linearGradient>
+            <linearGradient id="spOrbitGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+              <stop offset="0%" stop-color="#00D2FF" />
+              <stop offset="70%" stop-color="#2563EB" />
+              <stop offset="100%" stop-color="#8B5CF6" />
+            </linearGradient>
+            <filter id="spGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2563EB" flood-opacity="0.25"/>
+            </filter>
+          </defs>
+          <g class="sp-icon-group" filter="url(#spGlow)">
+            <rect x="8" y="10" width="40" height="36" rx="9" fill="url(#spCalGrad)" />
+            <rect x="17" y="5" width="4" height="10" rx="2" fill="#00D2FF" />
+            <rect x="33" y="5" width="4" height="10" rx="2" fill="#38BDF8" />
+            <rect x="13.5" y="21" width="29" height="19" rx="4" fill="#FFFFFF" fill-opacity="0.96" />
+            <rect x="17.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="17.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <path d="M 4 33 C 4 48, 22 55, 45 47 C 52 44, 56 39, 57 34" stroke="url(#spOrbitGrad)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <circle cx="44" cy="40" r="8.5" fill="#0066FF" stroke="#FFFFFF" stroke-width="2.5" />
+            <path d="M 40.5 40 L 43 42.5 L 48 37.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <text x="64" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-sync">Sync</text>
+          <text x="126" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">Po</text>
+          <rect x="160.5" y="21" width="4.5" height="14" rx="1.5" class="sp-pin-fill" fill="#0066FF" />
+          <path d="M 162.75 9 C 160.2 9, 158.2 11, 158.2 13.5 C 158.2 16.5, 162.75 19.5, 162.75 19.5 C 162.75 19.5, 167.3 16.5, 167.3 13.5 C 167.3 11, 165.3 9, 162.75 9 Z" class="sp-pin-fill" fill="#0066FF" />
+          <circle cx="162.75" cy="13.2" r="1.6" fill="#FFFFFF" />
+          <text x="169" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">nt</text>
+          <text x="66" y="49" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="600" font-size="8.5" letter-spacing="0.1em" class="sp-tagline">Schedule <tspan fill="#0066FF">•</tspan> Manage <tspan fill="#0066FF">•</tspan> Grow</text>
+        </svg>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-links" aria-label="Main Navigation">
+        <!-- Home Dropdown -->
+        <div class="nav-dropdown" id="homeDropdown">
+          <button type="button" class="nav-link nav-dropdown-btn active" id="homeDropdownBtn" aria-haspopup="true" aria-expanded="false">
+            <span>Home</span>
+            <svg class="dropdown-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav-dropdown-menu" id="homeDropdownMenu" role="menu">
+            <a href="index.html" class="dropdown-menu-item active" role="menuitem">
+              <div class="dropdown-item-header">
+                <span class="dropdown-item-title">Home 1</span>
+                <span class="nav-badge-pill current">Active</span>
+              </div>
+              <span class="dropdown-item-sub">Appointment Automation (Phase 1)</span>
+            </a>
+            <a href="home-2.html" class="dropdown-menu-item" role="menuitem">
+              <div class="dropdown-item-header">
+                <span class="dropdown-item-title">Home 2</span>
+                <span class="nav-badge-pill upcoming">Phase 2</span>
+              </div>
+              <span class="dropdown-item-sub">Enterprise Multi-Location SaaS</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="dashboard/index.html" class="nav-link">Dashboard</a>
+      </nav>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <!-- RTL Toggle -->
+        <button type="button" class="btn-icon rtl-toggle-btn" id="rtlToggleBtn" aria-label="Toggle text direction (LTR/RTL)" title="Switch text direction">
+          <span class="rtl-label" style="font-size:0.75rem; font-weight:700;">RTL</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button type="button" class="btn-icon theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme mode" title="Switch light or dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="icon-sun" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <!-- Auth CTAs -->
+        <a href="login.html" class="btn btn-secondary btn-sm d-none d-sm-inline-flex">Log In</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Start Free Trial</a>
+
+        <!-- Hamburger Toggle -->
+        <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Open mobile navigation menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+      <!-- Mobile Drawer & Overlay -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile Navigation Drawer">
+    <div class="drawer-header">
+      <a href="index.html" class="brand-logo" aria-label="SyncPoint Homepage">
+        <svg class="brand-logo-svg" viewBox="0 0 198 56" height="38" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SyncPoint">
+          <defs>
+            <linearGradient id="spCalGradMob" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00A3FF" />
+              <stop offset="50%" stop-color="#2563EB" />
+              <stop offset="100%" stop-color="#4F46E5" />
+            </linearGradient>
+            <linearGradient id="spOrbitGradMob" x1="0%" y1="50%" x2="100%" y2="50%">
+              <stop offset="0%" stop-color="#00D2FF" />
+              <stop offset="70%" stop-color="#2563EB" />
+              <stop offset="100%" stop-color="#8B5CF6" />
+            </linearGradient>
+          </defs>
+          <g class="sp-icon-group">
+            <rect x="8" y="10" width="40" height="36" rx="9" fill="url(#spCalGradMob)" />
+            <rect x="17" y="5" width="4" height="10" rx="2" fill="#00D2FF" />
+            <rect x="33" y="5" width="4" height="10" rx="2" fill="#38BDF8" />
+            <rect x="13.5" y="21" width="29" height="19" rx="4" fill="#FFFFFF" fill-opacity="0.96" />
+            <rect x="17.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="17.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <path d="M 4 33 C 4 48, 22 55, 45 47 C 52 44, 56 39, 57 34" stroke="url(#spOrbitGradMob)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <circle cx="44" cy="40" r="8.5" fill="#0066FF" stroke="#FFFFFF" stroke-width="2.5" />
+            <path d="M 40.5 40 L 43 42.5 L 48 37.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <text x="64" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-sync">Sync</text>
+          <text x="126" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">Po</text>
+          <rect x="160.5" y="21" width="4.5" height="14" rx="1.5" class="sp-pin-fill" fill="#0066FF" />
+          <path d="M 162.75 9 C 160.2 9, 158.2 11, 158.2 13.5 C 158.2 16.5, 162.75 19.5, 162.75 19.5 C 162.75 19.5, 167.3 16.5, 167.3 13.5 C 167.3 11, 165.3 9, 162.75 9 Z" class="sp-pin-fill" fill="#0066FF" />
+          <circle cx="162.75" cy="13.2" r="1.6" fill="#FFFFFF" />
+          <text x="169" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">nt</text>
+          <text x="66" y="49" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="600" font-size="8.5" letter-spacing="0.1em" class="sp-tagline">Schedule <tspan fill="#0066FF">•</tspan> Manage <tspan fill="#0066FF">•</tspan> Grow</text>
+        </svg>
+      </a>
+      <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close navigation drawer">✕</button>
+    </div>
+
+    <div class="mobile-nav-links">
+      <!-- Collapsible Mobile Home Item -->
+      <div class="mobile-dropdown" id="mobileHomeDropdown">
+        <button type="button" class="mobile-nav-link mobile-dropdown-toggle active" id="mobileHomeToggleBtn" aria-expanded="false">
+          <span>Home</span>
+          <svg class="dropdown-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="mobile-dropdown-menu">
+          <a href="index.html" class="mobile-dropdown-item active">
+            <span>Home 1</span>
+            <span class="nav-badge-pill current">Phase 1</span>
+          </a>
+          <a href="home-2.html" class="mobile-dropdown-item">
+            <span>Home 2</span>
+            <span class="nav-badge-pill upcoming">Phase 2</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="features.html" class="mobile-nav-link">Features</a>
+      <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+      <a href="dashboard/index.html" class="mobile-nav-link">Dashboard Portal</a>
+    </div>
+
+    <div style="margin-top:auto; display:flex; flex-direction:column; gap:0.75rem; padding-top:1.5rem; border-top:1px solid var(--border-subtle);">
+      <a href="login.html" class="btn btn-secondary w-100">Log In</a>
+      <a href="register.html" class="btn btn-primary w-100">Start Free Trial</a>
+    </div>
+  </aside>
+
+  <!-- ===================================================================
+       HOME 1 — SECTION 1: FULL-SCREEN HERO
+       =================================================================== -->
+  <section class="hero-fullscreen" id="hero" aria-label="Hero Section">
+    <div class="container hero-container">
+      <!-- Left Content -->
+      <div class="hero-content">
+        <div class="hero-pill">
+          <span class="hero-pill-badge">Intelligent Scheduling</span>
+          <span class="hero-pill-text">Zero Double-Bookings Guarantee</span>
+        </div>
+
+        <h1 class="hero-title">
+          Smart Appointment Scheduling That Runs on <span class="hero-gradient-text">Autopilot</span>
+        </h1>
+
+        <p class="hero-desc">
+          Eliminate endless email back-and-forth, stop costly client no-shows with automated SMS & WhatsApp reminders, and let qualified customers book directly into your calendar 24/7.
+        </p>
+
+        <div class="hero-actions">
+          <a href="register.html" class="btn btn-primary btn-lg" id="heroPrimaryCta">
+            <span>Get Started Free</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="#benefits" class="btn btn-soft btn-lg" id="heroSecondaryCta">
+            <span>See How It Works</span>
+          </a>
+        </div>
+
+        <!-- Social Proof -->
+        <div class="hero-proof">
+          <div class="avatar-stack">
+            <div class="avatar-stack-item" style="background-image: url('assets/images/industry-healthcare.jpg');" title="Clinician User"></div>
+            <div class="avatar-stack-item" style="background-image: url('assets/images/industry-consulting.jpg');" title="Consultant User"></div>
+            <div class="avatar-stack-item" style="background-image: url('assets/images/industry-salon.jpg');" title="Salon Owner"></div>
+            <div class="avatar-stack-item" style="background-image: url('assets/images/industry-fitness.jpg');" title="Fitness Coach"></div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.2rem;">
+            <div style="color:#f59e0b; font-size:0.9rem;">
+              <span>★★★★★</span> <strong style="color:var(--text-main); margin-inline-start:0.35rem;">4.9/5</strong>
+            </div>
+            <div style="font-size:0.825rem; color:var(--text-muted);">
+              Trusted by <strong>25,000+ businesses</strong> • No credit card required
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Product Interface Preview: Reference-Quality Appointment Scheduling Stage -->
+      <div class="hero-visual">
+        <div class="crew-stage" aria-label="Live Provider Appointment Board">
+          <div class="crew-days" id="heroDaysFilter" role="tablist" aria-label="Filter schedule by day">
+            <button type="button" class="day-tab" data-day="mon" role="tab" aria-selected="false">Mon 12</button>
+            <button type="button" class="day-tab" data-day="tue" role="tab" aria-selected="false">Tue 13</button>
+            <button type="button" class="day-tab on" data-day="wed" role="tab" aria-selected="true">Wed 14</button>
+            <button type="button" class="day-tab" data-day="thu" role="tab" aria-selected="false">Thu 15</button>
+            <button type="button" class="day-tab" data-day="fri" role="tab" aria-selected="false">Fri 16</button>
+            <button type="button" class="day-tab" data-day="sat" role="tab" aria-selected="false">Sat 17</button>
+            <button type="button" class="day-tab" data-day="sun" role="tab" aria-selected="false">Sun 18</button>
+          </div>
+          <div class="crew" id="heroCrewBoard">
+            <figure class="crew-col" id="crewCard1" data-provider="evelyn" title="Click to view appointment details">
+              <img id="crewImg1" src="assets/images/hero-provider-doctor.jpg" alt="Dr. Evelyn Vance Clinical Intake" fetchpriority="high">
+              <figcaption class="ticket">
+                <span class="avatar" id="crewAv1">EV</span>
+                <div class="ticket-info">
+                  <b id="crewName1">Dr. Evelyn Vance</b>
+                  <small id="crewMeta1">09:30 AM · Health Intake</small>
+                </div>
+                <i class="chip" id="crewChip1">Confirmed</i>
+              </figcaption>
+            </figure>
+            <figure class="crew-col" id="crewCard2" data-provider="marcus" title="Click to view appointment details">
+              <img id="crewImg2" src="assets/images/hero-provider-consultant.jpg" alt="Marcus Sterling Strategy Session" fetchpriority="high">
+              <figcaption class="ticket">
+                <span class="avatar" id="crewAv2" style="background:#0284c7;">MS</span>
+                <div class="ticket-info">
+                  <b id="crewName2">Marcus Sterling</b>
+                  <small id="crewMeta2">11:00 AM · Strategy Session</small>
+                </div>
+                <i class="chip" id="crewChip2" style="background:#0284c7;">Live Sync</i>
+              </figcaption>
+            </figure>
+            <figure class="crew-col" id="crewCard3" data-provider="chloe" title="Click to view appointment details">
+              <img id="crewImg3" src="assets/images/hero-provider-stylist.jpg" alt="Chloe Bennett Luxury Styling" fetchpriority="high" title="Click to view appointment details">
+              <figcaption class="ticket">
+                <span class="avatar" id="crewAv3" style="background:#ec4899;">CB</span>
+                <div class="ticket-info">
+                  <b id="crewName3">Chloe Bennett</b>
+                  <small id="crewMeta3">02:00 PM · Luxury Styling</small>
+                </div>
+                <i class="chip" id="crewChip3">Deposit Paid</i>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="crew-foot">
+            <span><b id="statBookings">1,452</b> Bookings This Month</span>
+            <span><b id="statAttendance">96.2%</b> Attendance</span>
+            <span><b id="statConflicts">0</b> Scheduling Conflicts</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       HOME 1 — SECTION 2: SCHEDULING AUTOMATION BENEFITS
+       =================================================================== -->
+  <section class="section section-subtle" id="benefits">
+    <div class="container">
+      <!-- 1. Reference-Style Trust Strip -->
+      <div class="trust2 mb-5">
+        <div class="trust2-container">
+          <div class="trust2-header">
+            <div class="t2-count">
+              <div class="t2-count-badge">
+                <b>25,000+</b>
+                <span>practices &amp; client businesses trust SyncPoint</span>
+              </div>
+            </div>
+            <div class="t2-rating-badge">
+              <div class="stars" aria-label="5 stars rating">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <span><strong>4.9 / 5.0</strong> average practitioner rating</span>
+              <span class="t2-divider">·</span>
+              <span class="t2-verified">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                Verified Security
+              </span>
+            </div>
+          </div>
+          <ul class="t2-list">
+            <li>
+              <span class="t2-ic" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><path d="M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"/><path d="M10 9h4"/><path d="M12 7v4"/></svg>
+              </span>
+              <span class="t2-info"><b>Nilgiri Health</b><small>Clinics &amp; Doctors</small></span>
+            </li>
+            <li>
+              <span class="t2-ic" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              </span>
+              <span class="t2-info"><b>Sterling &amp; Co</b><small>Executive Advisory</small></span>
+            </li>
+            <li>
+              <span class="t2-ic" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+              </span>
+              <span class="t2-info"><b>Aura Luxury</b><small>Salons &amp; Spas</small></span>
+            </li>
+            <li>
+              <span class="t2-ic" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="6" x2="9" y2="6.01"/><line x1="15" y1="6" x2="15" y2="6.01"/><line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/><line x1="9" y1="14" x2="9" y2="14.01"/><line x1="15" y1="14" x2="15" y2="14.01"/><line x1="9" y1="18" x2="15" y2="18"/></svg>
+              </span>
+              <span class="t2-info"><b>Apex Realty</b><small>Property Advisory</small></span>
+            </li>
+            <li>
+              <span class="t2-ic" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg>
+              </span>
+              <span class="t2-info"><b>FitPro Athletic</b><small>Private Training</small></span>
+            </li>
+            <li>
+              <span class="t2-ic" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </span>
+              <span class="t2-info"><b>Oxford Prep</b><small>Masterclass Academies</small></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2. Before vs After Comparison (Inspired by Reference Website) -->
+      <div class="head-split compare-head-split">
+        <div class="head-split-main">
+          <div class="badge-tag">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            Why Teams Switch
+          </div>
+          <h2 class="section-title compare-title">
+            Manual phone tag <span class="title-highlight">costs your practice hours</span> every week.
+          </h2>
+        </div>
+        <div class="head-split-desc">
+          <p class="lead">Most service providers spend their evenings answering messages and confirming times. Here is what changes when client booking runs on SyncPoint.</p>
+        </div>
+      </div>
+
+      <div class="compare mb-5">
+        <article class="cmp-card old">
+          <div class="img">
+            <img src="assets/images/before-syncpoint-chaos.jpg" alt="Manual paperwork, sticky notes, phone tags and calendar chaos before SyncPoint">
+            <span class="tag">Before SyncPoint</span>
+          </div>
+          <div class="cmp-body">
+            <h3>Phone Calls, WhatsApp Threads & Wall Planners</h3>
+            <ul class="cmp-list">
+              <li><span class="ico-x">✕</span> 3 to 5 hours lost weekly going back-and-forth on "When are you free?"</li>
+              <li><span class="ico-x">✕</span> Costly last-minute no-shows with no upfront deposit collected</li>
+              <li><span class="ico-x">✕</span> Awkward double-bookings and calendar overlap disputes</li>
+              <li><span class="ico-x">✕</span> Prospective clients dropping off before confirming an appointment</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="cmp-card new">
+          <div class="img">
+            <img src="assets/images/after-syncpoint-booking.jpg" alt="Seamless automated appointment scheduling and instant booking confirmation with SyncPoint">
+            <span class="tag">With SyncPoint</span>
+          </div>
+          <div class="cmp-body">
+            <h3>One Automated Booking Link That Works 24/7</h3>
+            <ul class="cmp-list">
+              <li><span class="ico-check">✓</span> Clients self-book their confirmed appointment in under 60 seconds</li>
+              <li><span class="ico-check">✓</span> Automated SMS & WhatsApp reminders slash no-show rates by 85%</li>
+              <li><span class="ico-check">✓</span> Real-time bi-directional sync with Google Calendar & Outlook 365</li>
+              <li><span class="ico-check">✓</span> Upfront deposits & retainer fees collected securely via Stripe</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <div class="section-header">
+        <span class="badge-tag">Measurable Business ROI</span>
+        <h2 class="section-title">Why High-Growth Teams Automate With SyncPoint</h2>
+        <p class="section-subtitle">
+          Turn your appointment calendar into a frictionless growth engine that delights clients, eliminates administrative drag, and maximizes billable hours.
+        </p>
+      </div>
+
+      <!-- 4 Benefits Cards (iPad Portrait: Exactly 2 cards per row) -->
+      <div class="benefits-grid mb-5">
+        <div class="benefit-card">
+          <div class="benefit-icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <div class="benefit-stat">94%</div>
+          <h3 class="benefit-title">Fewer No-Shows</h3>
+          <p class="benefit-desc">
+            Automated SMS, email, and WhatsApp reminders with 1-click confirmation keep client attendance rock-solid.
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="benefit-stat">15+ Hrs</div>
+          <h3 class="benefit-title">Saved Weekly</h3>
+          <p class="benefit-desc">
+            Stop the endless email tag. Clients book available slots directly based on your customized real-time parameters.
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+          <div class="benefit-stat">2.4x</div>
+          <h3 class="benefit-title">Higher Booking Rate</h3>
+          <p class="benefit-desc">
+            Capture prospective clients right at peak intent with slick embeddable widgets on your website and profiles.
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <div class="benefit-stat">0</div>
+          <h3 class="benefit-title">Double Bookings</h3>
+          <p class="benefit-desc">
+            Instantaneous 2-way sync across multiple calendars guarantees total conflict prevention across personal & team schedules.
+          </p>
+        </div>
+      </div>
+
+      <!-- Real-Time Metrics Strip -->
+      <div class="row g-4 text-center p-4 rounded-4" style="background:var(--bg-card); border:1px solid var(--border-card); box-shadow:var(--shadow-sm);">
+        <div class="col-6 col-lg-3">
+          <div style="font-size:2.2rem; font-weight:800; color:var(--primary); font-family:var(--font-heading);">3.2M+</div>
+          <div style="font-size:0.875rem; color:var(--text-muted); font-weight:600;">Appointments Scheduled</div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div style="font-size:2.2rem; font-weight:800; color:var(--primary); font-family:var(--font-heading);">99.98%</div>
+          <div style="font-size:0.875rem; color:var(--text-muted); font-weight:600;">Calendar Sync Uptime</div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div style="font-size:2.2rem; font-weight:800; color:var(--primary); font-family:var(--font-heading);">45s</div>
+          <div style="font-size:0.875rem; color:var(--text-muted); font-weight:600;">Avg. Client Booking Time</div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div style="font-size:2.2rem; font-weight:800; color:var(--primary); font-family:var(--font-heading);">140+</div>
+          <div style="font-size:0.875rem; color:var(--text-muted); font-weight:600;">Countries Supported</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       HOME 1 — SECTION 3: CORE FEATURES AND FUNCTIONALITY
+       =================================================================== -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag">Engineered For Reliability</span>
+        <h2 class="section-title">Core Features Built for Modern Businesses</h2>
+        <p class="section-subtitle">
+          Everything your practice or service agency needs to automate booking, manage staff rosters, and securely capture client payments.
+        </p>
+      </div>
+
+      <!-- Core Features Bento Grid (Matching Reference Website Architecture) -->
+      <div class="bento">
+        <!-- Tile 1: Photo Tile - Two-Way Calendar Sync -->
+        <div class="b-tile b-photo">
+          <img src="assets/images/feature-sync.jpg" alt="Two-way calendar sync interface" loading="lazy">
+          <div class="b-txt">
+            <span class="badge mb-2" style="background:var(--primary); color:#fff; font-size:0.72rem;">Real-Time Sync</span>
+            <h3>Two-Way Multi-Calendar Sync</h3>
+            <p>Direct integration with Google Calendar, Outlook 365, and iCloud with sub-second synchronization and zero double-bookings.</p>
+          </div>
+        </div>
+
+        <!-- Tile 2: Content Tile - Smart Availability Rules -->
+        <div class="b-tile">
+          <div class="b-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <h3>Custom Availability Rules</h3>
+          <p>Define weekly recurring schedules, bespoke holiday blocks, and custom meeting durations per team member.</p>
+          <div class="mini-chip">
+            <span class="on">M</span>
+            <span class="on">T</span>
+            <span class="on">W</span>
+            <span class="on">T</span>
+            <span class="on">F</span>
+            <span>S</span>
+            <span>S</span>
+          </div>
+        </div>
+
+        <!-- Tile 3: Photo Tile - Automated Reminders -->
+        <div class="b-tile b-photo">
+          <img src="assets/images/feature-reminders.jpg" alt="Automated appointment reminders workflow" loading="lazy">
+          <div class="b-txt">
+            <span class="badge mb-2" style="background:var(--accent-coral); color:#fff; font-size:0.72rem;">Omnichannel Alert</span>
+            <h3>Smart Multi-Channel Reminders</h3>
+            <p>Trigger automatic SMS, WhatsApp, and email reminders 24h & 2h before appointments to reduce no-shows by 88%.</p>
+          </div>
+        </div>
+
+        <!-- Tile 4: Content Tile - Buffer Times & Travel Guard -->
+        <div class="b-tile">
+          <div class="b-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3>Buffer Guards & Travel Time</h3>
+          <p>Prevent scheduling fatigue by automatically padding 15-minute preparation and transit buffers between sessions.</p>
+          <div class="mini-note">
+            <span class="mn-ic">✓</span>
+            <span>+15 min prep buffer auto-enforced</span>
+          </div>
+        </div>
+
+        <!-- Tile 5: Photo Tile - Team Round-Robin -->
+        <div class="b-tile b-photo">
+          <img src="assets/images/feature-team.jpg" alt="Team round robin scheduling dashboard" loading="lazy">
+          <div class="b-txt">
+            <span class="badge mb-2" style="background:var(--primary-dark); color:#fff; font-size:0.72rem;">Team Engine</span>
+            <h3>Team Round-Robin Routing</h3>
+            <p>Evenly distribute booking intake across available providers or let clients hand-pick their preferred specialist.</p>
+          </div>
+        </div>
+
+        <!-- Tile 6: Content Tile - Secure Payments & Deposits -->
+        <div class="b-tile">
+          <div class="b-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <h3>Integrated Payments & Deposits</h3>
+          <p>Collect non-refundable booking deposits, full upfront fees, or card holds seamlessly via Stripe and PayPal.</p>
+          <div class="mini-note">
+            <span class="mn-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+            <span>Instant Stripe & PayPal capture</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       HOME 1 — SECTION 4: HOW IT WORKS
+       =================================================================== -->
+  <section class="section section-subtle" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag">Effortless Onboarding</span>
+        <h2 class="section-title">Up and Running in Under 3 Minutes</h2>
+        <p class="section-subtitle">
+          Three straightforward steps to replace manual booking headaches with effortless scheduling automation.
+        </p>
+      </div>
+
+      <!-- 3 Steps Photo Layout (Matching Reference Website Architecture) -->
+      <div class="steps-photo">
+        <div class="step-p">
+          <div class="img">
+            <img src="assets/images/feature-sync.jpg" alt="Connect your calendar step" loading="lazy">
+            <span class="n">01</span>
+          </div>
+          <div>
+            <h3>Connect Your Calendars</h3>
+            <p>Sync Google Calendar, Outlook 365, and iCloud concurrently in seconds with automatic real-time conflict prevention.</p>
+          </div>
+          <span class="tag"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 60-Second Setup</span>
+        </div>
+
+        <div class="step-p">
+          <div class="img">
+            <img src="assets/images/feature-reminders.jpg" alt="Define services and rules step" loading="lazy">
+            <span class="n">02</span>
+          </div>
+          <div>
+            <h3>Define Services & Rules</h3>
+            <p>Establish meeting durations, buffer minutes, client intake questionnaires, and deposit policies with full control.</p>
+          </div>
+          <span class="tag"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Custom Policies</span>
+        </div>
+
+        <div class="step-p">
+          <div class="img">
+            <img src="assets/images/cta-booking-flow.jpg" alt="Share link and get booked step" loading="lazy">
+            <span class="n">03</span>
+          </div>
+          <div>
+            <h3>Share Link & Get Booked</h3>
+            <p>Embed sleek booking widgets on your site, share direct bio links, and watch qualified clients confirm appointments 24/7.</p>
+          </div>
+          <span class="tag"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-2.05 11A22.35 22.35 0 0 1 15 12z"/></svg> 24/7 Autopilot</span>
+        </div>
+      </div>
+
+      <!-- Interactive Booking Scheduler Widget -->
+      <div id="booking-preview" class="p-4 p-md-5 rounded-4 shadow-lg" style="background:var(--bg-card); border:1px solid var(--border-card); max-width:880px; margin:0 auto; scroll-margin-top:100px;">
+        <div class="d-flex justify-content-between align-items-center pb-4 mb-4 border-bottom flex-wrap gap-3">
+          <div>
+            <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:0.25rem;">Interactive Booking Preview</h3>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin:0;">Experience what your clients see when booking a slot:</p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <div style="width:38px; height:38px; border-radius:50%; background:var(--primary-light); color:var(--primary); display:flex; align-items:center; justify-content:center; font-weight:800;">EV</div>
+            <div>
+              <div style="font-weight:700; font-size:0.875rem;">Dr. Evelyn Vance</div>
+              <div style="font-size:0.75rem; color:var(--text-light);">Lead Clinical Consultant</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6">
+            <span style="font-size:0.8rem; font-weight:700; text-transform:uppercase; color:var(--text-muted); display:block; margin-bottom:0.75rem;">1. Select Appointment Service</span>
+            <div class="d-flex flex-column gap-2">
+              <button type="button" class="service-option-btn active p-3 rounded-3 text-start w-100" style="background:var(--primary-light); border:1px solid var(--primary); color:var(--primary);">
+                <strong>30-Min Discovery Consultation</strong>
+                <div style="font-size:0.8rem; opacity:0.85;">Virtual Video Session • Complimentary</div>
+              </button>
+              <button type="button" class="service-option-btn p-3 rounded-3 text-start w-100" style="background:var(--bg-subtle); border:1px solid var(--border-card);">
+                <strong>60-Min In-Depth Strategy Session</strong>
+                <div style="font-size:0.8rem; color:var(--text-light);">Comprehensive Roadmap • $150</div>
+              </button>
+              <button type="button" class="service-option-btn p-3 rounded-3 text-start w-100" style="background:var(--bg-subtle); border:1px solid var(--border-card);">
+                <strong>15-Min Quick Intake Review</strong>
+                <div style="font-size:0.8rem; color:var(--text-light);">Direct Phone Call • Complimentary</div>
+              </button>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <span style="font-size:0.8rem; font-weight:700; text-transform:uppercase; color:var(--text-muted); display:block; margin-bottom:0.75rem;">2. Pick Available Time Slot</span>
+            <div class="d-grid gap-2" style="grid-template-columns:1fr 1fr;">
+              <button type="button" class="slot-pill active p-2 rounded-2 text-center" style="background:var(--primary); color:#fff; border:1px solid var(--primary); font-weight:600; font-size:0.85rem;">09:30 AM Tomorrow</button>
+              <button type="button" class="slot-pill p-2 rounded-2 text-center" style="background:var(--bg-card); border:1px solid var(--border-card); font-weight:600; font-size:0.85rem;">11:00 AM Tomorrow</button>
+              <button type="button" class="slot-pill p-2 rounded-2 text-center" style="background:var(--bg-card); border:1px solid var(--border-card); font-weight:600; font-size:0.85rem;">02:30 PM Tomorrow</button>
+              <button type="button" class="slot-pill p-2 rounded-2 text-center" style="background:var(--bg-card); border:1px solid var(--border-card); font-weight:600; font-size:0.85rem;">04:15 PM Tomorrow</button>
+              <button type="button" class="slot-pill p-2 rounded-2 text-center" style="background:var(--bg-card); border:1px solid var(--border-card); font-weight:600; font-size:0.85rem;">10:00 AM Thursday</button>
+              <button type="button" class="slot-pill p-2 rounded-2 text-center" style="background:var(--bg-card); border:1px solid var(--border-card); font-weight:600; font-size:0.85rem;">03:30 PM Thursday</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 p-3 rounded-3 d-flex justify-content-between align-items-center flex-wrap gap-2" style="background:var(--success-light); border:1px solid rgba(16,185,129,0.3);">
+          <div id="demoConfirmText" style="font-size:0.875rem; color:#065f46; font-weight:600;">
+            <strong>Appointment Confirmed:</strong> 30-Min Discovery Consultation at <strong>09:30 AM Tomorrow</strong>. Calendar invite & SMS reminder scheduled!
+          </div>
+          <span class="badge" style="background:var(--primary); color:#fff;">Live Sync Active</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       HOME 1 — SECTION 5: TARGET INDUSTRIES AND BUSINESS USE CASES
+       =================================================================== -->
+  <section class="section" id="industries">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag">Versatile Solutions</span>
+        <h2 class="section-title">Tailored Scheduling for Every Industry</h2>
+        <p class="section-subtitle">
+          From solo practitioners to multi-location clinics and consultancies, SyncPoint adapts to your exact booking protocols.
+        </p>
+      </div>
+
+      <!-- 6 Industry Cards (Matching Reference Website Architecture) -->
+      <div class="ind2">
+        <a href="#booking-preview" class="ind2-card" data-industry="healthcare">
+          <div class="ph">
+            <img src="assets/images/industry-healthcare.jpg" alt="Medical clinic doctor appointment scheduling" loading="lazy">
+          </div>
+          <div class="bd">
+            <div class="top">
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2"/><path d="M12 15v5a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5"/><circle cx="17" cy="13" r="2"/><path d="M7 3v7a5 5 0 0 0 10 0V3"/><line x1="5" y1="3" x2="9" y2="3"/><line x1="15" y1="3" x2="19" y2="3"/></svg></span>
+              <span class="ind2-t">Healthcare & Clinics</span>
+            </div>
+            <p class="tx">HIPAA-compliant patient booking with digital medical intake questionnaires, video telehealth links, and automated follow-up sequences.</p>
+            <div class="ft">
+              <span class="chip"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><path d="M10 9h4"/><path d="M12 7v4"/></svg> Clinical Workflows</span>
+              <span class="more">View Details &rarr;</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#booking-preview" class="ind2-card" data-industry="salon">
+          <div class="ph">
+            <img src="assets/images/industry-salon.jpg" alt="Hair salon and spa appointment reception" loading="lazy">
+          </div>
+          <div class="bd">
+            <div class="top">
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></span>
+              <span class="ind2-t">Salons & Wellness</span>
+            </div>
+            <p class="tx">Allow clients to pick preferred stylists, collect upfront deposits, and eliminate empty salon appointment chairs with automated SMS alerts.</p>
+            <div class="ft">
+              <span class="chip"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Stylist Roster</span>
+              <span class="more">View Details &rarr;</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#booking-preview" class="ind2-card" data-industry="consulting">
+          <div class="ph">
+            <img src="assets/images/industry-consulting.jpg" alt="Corporate consulting executive session" loading="lazy">
+          </div>
+          <div class="bd">
+            <div class="top">
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+              <span class="ind2-t">Executive Consulting</span>
+            </div>
+            <p class="tx">Qualify corporate leads with intake forms, collect retainer payments, and coordinate multi-timezone discovery calls seamlessly.</p>
+            <div class="ft">
+              <span class="chip"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Global Timezones</span>
+              <span class="more">View Details &rarr;</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#booking-preview" class="ind2-card" data-industry="education">
+          <div class="ph">
+            <img src="assets/images/industry-education.jpg" alt="Academic tutoring and education scheduling" loading="lazy">
+          </div>
+          <div class="bd">
+            <div class="top">
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
+              <span class="ind2-t">Education & Tutors</span>
+            </div>
+            <p class="tx">Manage semester schedules, recurring student lesson slots, homework review buffers, and parent-teacher conference distribution.</p>
+            <div class="ft">
+              <span class="chip"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Recurring Slots</span>
+              <span class="more">View Details &rarr;</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#booking-preview" class="ind2-card" data-industry="fitness">
+          <div class="ph">
+            <img src="assets/images/industry-fitness.jpg" alt="Personal trainer client gym booking" loading="lazy">
+          </div>
+          <div class="bd">
+            <div class="top">
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg></span>
+              <span class="ind2-t">Fitness & Studios</span>
+            </div>
+            <p class="tx">Cap boutique group workout class sizes, manage 1-on-1 personal training packages, and auto-fill cancellation waitlists instantly.</p>
+            <div class="ft">
+              <span class="chip"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Waitlist Engine</span>
+              <span class="more">View Details &rarr;</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#booking-preview" class="ind2-card" data-industry="realestate">
+          <div class="ph">
+            <img src="assets/images/industry-realestate.jpg" alt="Real estate agent showing property walkthrough" loading="lazy">
+          </div>
+          <div class="bd">
+            <div class="top">
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+              <span class="ind2-t">Real Estate & Tours</span>
+            </div>
+            <p class="tx">Coordinate private property walk-throughs, open-house attendee caps, and agent travel buffer times automatically.</p>
+            <div class="ft">
+              <span class="chip"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> GPS Location Pins</span>
+              <span class="more">View Details &rarr;</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       HOME 1 — SECTION 6: FINAL CTA AND FOOTER
+       =================================================================== -->
+  <section class="section" id="cta">
+    <div class="container">
+      <div class="cta-banner-wrapper">
+        <div class="cta-banner-container">
+          <div>
+            <span class="badge" style="background:rgba(255,255,255,0.18); color:#93c5fd; padding:0.4rem 0.9rem; font-size:0.8rem; text-transform:uppercase; margin-bottom:1.25rem; display:inline-block;">Transform Your Business</span>
+            <h2 class="cta-title">Ready to Automate Your Bookings and Reclaim 15 Hours Every Week?</h2>
+            <p class="cta-subtitle">
+              Join over 25,000 service businesses, clinicians, and consulting firms booking appointments seamlessly. Start your 14-day free trial now.
+            </p>
+            <div class="d-flex gap-3 flex-wrap mb-4">
+              <a href="register.html" class="btn btn-lg" style="background:#fff; color:#1e1b4b; font-weight:700;">Start Free 14-Day Trial</a>
+              <a href="contact.html" class="btn btn-lg btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.4);">Schedule a Product Tour</a>
+            </div>
+            <div class="d-flex gap-4 flex-wrap text-white-50" style="font-size:0.85rem;">
+              <div>✓ No credit card required</div>
+              <div>✓ 2-minute setup</div>
+              <div>✓ Cancel anytime</div>
+            </div>
+          </div>
+          <div class="d-none d-lg-block">
+            <div class="rounded-4 overflow-hidden shadow-lg" style="border:1px solid rgba(255,255,255,0.2);">
+              <img src="assets/images/cta-booking-flow.jpg" alt="SyncPoint multi-device appointment booking flow" width="600" height="340">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <svg class="brand-logo-svg" viewBox="0 0 198 56" height="42" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SyncPoint">
+              <g class="sp-icon-group" filter="url(#spGlow)">
+            <rect x="8" y="10" width="40" height="36" rx="9" fill="url(#spCalGrad)" />
+            <rect x="17" y="5" width="4" height="10" rx="2" fill="#00D2FF" />
+            <rect x="33" y="5" width="4" height="10" rx="2" fill="#38BDF8" />
+            <rect x="13.5" y="21" width="29" height="19" rx="4" fill="#FFFFFF" fill-opacity="0.96" />
+            <rect x="17.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="17.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <path d="M 4 33 C 4 48, 22 55, 45 47 C 52 44, 56 39, 57 34" stroke="url(#spOrbitGrad)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <circle cx="44" cy="40" r="8.5" fill="#0066FF" stroke="#FFFFFF" stroke-width="2.5" />
+            <path d="M 40.5 40 L 43 42.5 L 48 37.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <text x="64" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-sync">Sync</text>
+          <text x="126" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">Po</text>
+          <rect x="160.5" y="21" width="4.5" height="14" rx="1.5" class="sp-pin-fill" fill="#0066FF" />
+          <path d="M 162.75 9 C 160.2 9, 158.2 11, 158.2 13.5 C 158.2 16.5, 162.75 19.5, 162.75 19.5 C 162.75 19.5, 167.3 16.5, 167.3 13.5 C 167.3 11, 165.3 9, 162.75 9 Z" class="sp-pin-fill" fill="#0066FF" />
+          <circle cx="162.75" cy="13.2" r="1.6" fill="#FFFFFF" />
+          <text x="169" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">nt</text>
+          <text x="66" y="49" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="600" font-size="8.5" letter-spacing="0.1em" class="sp-tagline">Schedule <tspan fill="#0066FF">•</tspan> Manage <tspan fill="#0066FF">•</tspan> Grow</text>
+            </svg>
+          </a>
+          <p>The enterprise-grade appointment scheduling automation SaaS built for clinics, advisors, studios, and service teams worldwide.</p>
+          <div class="footer-socials" aria-label="Social media links">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Follow SyncPoint on X (Twitter)" title="X (Twitter)">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 24.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Connect with SyncPoint on LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+              </svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="SyncPoint on GitHub" title="GitHub">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+              </svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="SyncPoint on YouTube" title="YouTube">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+          </div>
+          <div class="footer-trust-badge">
+            <span class="trust-shield">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+            <span>HIPAA BAA &amp; SOC 2 Type II Certified</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul class="footer-links-list">
+            <li><a href="features.html" class="footer-link">Calendar Sync</a></li>
+            <li><a href="features.html" class="footer-link">Automated SMS Reminders</a></li>
+            <li><a href="features.html" class="footer-link">Team Round-Robin</a></li>
+            <li><a href="pricing.html" class="footer-link">Pricing Plans</a></li>
+            <li><a href="dashboard/index.html" class="footer-link">Client Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html" class="footer-link">Home 1 (Automation)</a></li>
+            <li><a href="home-2.html" class="footer-link">Home 2 (Enterprise)</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact &amp; Support</a></li>
+            <li><a href="login.html" class="footer-link">Business Portal Login</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal &amp; Trust</h4>
+          <ul class="footer-links-list">
+            <li><a href="contact.html" class="footer-link">HIPAA BAA Policy</a></li>
+            <li><a href="contact.html" class="footer-link">SOC 2 Compliance</a></li>
+            <li><a href="contact.html" class="footer-link">Privacy Statement</a></li>
+            <li><a href="contact.html" class="footer-link">Terms of Service</a></li>
+            <li><a href="contact.html" class="footer-link">Security Whitepaper</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">&copy; 2026 SyncPoint SaaS Technologies Inc. All rights reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="about.html" class="footer-link">Company</a>
+          <a href="pricing.html" class="footer-link">Plans</a>
+          <a href="contact.html" class="footer-link status-pill">
+            <span class="status-indicator"></span>
+            Status: Operational
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Booking Preview Modal -->
+  <div class="modal fade" id="bookingPreviewModal" tabindex="-1" aria-labelledby="bookingPreviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow-lg" style="border-radius:20px; overflow:hidden; background:var(--bg-card);">
+        <div class="modal-header border-bottom p-4" style="background:var(--bg-subtle);">
+          <div class="d-flex align-items-center gap-3">
+            <div id="bpmAvatar" style="width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg, var(--primary), #8B5CF6); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.15rem; box-shadow:0 4px 12px rgba(37,99,235,0.25);">EV</div>
+            <div>
+              <h5 class="modal-title fw-bold mb-0" id="bookingPreviewModalLabel" style="font-size:1.25rem;">Interactive Booking Preview</h5>
+              <div class="small text-muted" id="bpmPractitionerMeta">Dr. Evelyn Vance · Lead Clinical Specialist</div>
+            </div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body p-4 p-md-5">
+          <!-- Normal Booking Form State -->
+          <div id="bpmFormState">
+            <div class="row g-4">
+              <!-- Step 1: Services -->
+              <div class="col-md-6">
+                <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--text-muted); display:block; margin-bottom:0.75rem; letter-spacing:0.05em;">1. Select Appointment Service</span>
+                <div class="d-flex flex-column gap-2" id="bpmServicesList">
+                  <!-- Populated dynamically -->
+                </div>
+              </div>
+
+              <!-- Step 2: Time Slots -->
+              <div class="col-md-6">
+                <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--text-muted); display:block; margin-bottom:0.75rem; letter-spacing:0.05em;">2. Pick Available Slot</span>
+                <div class="d-grid gap-2" style="grid-template-columns:1fr 1fr;" id="bpmSlotsList">
+                  <!-- Populated dynamically -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Client Info Inputs -->
+            <div class="mt-4 pt-3 border-top">
+              <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--text-muted); display:block; margin-bottom:0.75rem; letter-spacing:0.05em;">3. Client Confirmation Details</span>
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <input type="text" id="bpmClientName" class="form-control" placeholder="Your Full Name" value="Sarah Jenkins">
+                </div>
+                <div class="col-sm-6">
+                  <input type="email" id="bpmClientEmail" class="form-control" placeholder="name@company.com" value="sarah.jenkins@example.com">
+                </div>
+              </div>
+            </div>
+
+            <!-- Preview Notice & Confirm Button -->
+            <div class="mt-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
+              <div class="d-flex align-items-center gap-2 text-success small fw-semibold">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                Instant Two-Way Calendar & SMS Sync Active
+              </div>
+              <button type="button" class="btn btn-primary px-4 py-2" id="bpmConfirmBtn">
+                Confirm & Book Slot ➔
+              </button>
+            </div>
+          </div>
+
+          <!-- Success Celebration State -->
+          <div id="bpmSuccessState" class="text-center py-4" style="display:none;">
+            <div style="width:72px; height:72px; border-radius:50%; background:var(--success-light); color:var(--success); display:inline-flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
+              <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h4 class="fw-bold mb-2">Appointment Successfully Confirmed!</h4>
+            <p class="text-muted mb-4" id="bpmSuccessMsg">Your appointment has been locked into Dr. Evelyn Vance's calendar.</p>
+            <div class="p-3 rounded-3 mb-4 text-start" style="background:var(--bg-subtle); border:1px solid var(--border-subtle); max-width:480px; margin:0 auto;">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted small">Service:</span>
+                <strong class="small" id="bpmSuccessService">Comprehensive Health Intake</strong>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted small">Date & Time:</span>
+                <strong class="small" id="bpmSuccessTime">09:30 AM Tomorrow</strong>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted small">Client:</span>
+                <strong class="small" id="bpmSuccessClient">Sarah Jenkins</strong>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted small">Notifications:</span>
+                <span class="badge bg-success">Email & SMS Dispatched</span>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center gap-2">
+              <button type="button" class="btn btn-outline-secondary" id="bpmResetBtn">Book Another Test Slot</button>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Done & Return</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button type="button" class="back-to-top" id="backToTopBtn" aria-label="Scroll back to top" title="Scroll to top">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="19" x2="12" y2="5"></line>
+      <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+  </button>
+
+  <!-- JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

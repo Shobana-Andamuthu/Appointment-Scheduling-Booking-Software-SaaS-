@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Availability & Schedules | SyncPoint Business Portal</title>
+  <meta name="description" content="Configure provider working hours, break buffers, time-off requests, and service assignment matrix.">
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/images/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
+      corePlugins: { preflight: false }
+    }
+  </script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+  <!-- ===================================================================
+       PAGE PRELOADER
+       =================================================================== -->
+  <div class="page-preloader" id="pagePreloader" aria-hidden="true">
+    <div class="preloader-backdrop"></div>
+    <div class="preloader-card">
+      <div class="preloader-brand-icon">
+        <div class="preloader-orbit"></div>
+        <div class="preloader-orbit-glow"></div>
+        <div class="preloader-icon-core">
+          <svg viewBox="0 0 64 64" width="50" height="50" fill="none">
+            <defs>
+              <linearGradient id="preCalGradStf" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00A3FF"/>
+                <stop offset="50%" stop-color="#2563EB"/>
+                <stop offset="100%" stop-color="#4F46E5"/>
+              </linearGradient>
+            </defs>
+            <rect x="8" y="10" width="46" height="42" rx="11" fill="url(#preCalGradStf)"/>
+            <rect x="18" y="5" width="5" height="11" rx="2.5" fill="#00D2FF"/>
+            <rect x="39" y="5" width="5" height="11" rx="2.5" fill="#38BDF8"/>
+            <rect x="14" y="22" width="34" height="24" rx="5" fill="#FFFFFF" fill-opacity="0.96"/>
+            <rect x="19" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="29" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="39" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="19" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="29" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="39" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <circle cx="49" cy="46" r="10" fill="#2563EB" stroke="#FFFFFF" stroke-width="2.5"/>
+            <path d="M 44.5 46 L 47.5 49 L 53.5 43" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="preloader-brand-title">
+        <span class="preloader-text-sync">Sync</span><span class="preloader-text-point">Point</span>
+      </div>
+      <div class="preloader-progress-track">
+        <div class="preloader-progress-bar"></div>
+      </div>
+      <div class="preloader-caption">
+        <span>Loading staff directory</span>
+        <span class="preloader-dots"><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-layout">
+    <!-- Desktop & Mobile Sidebar -->
+    <aside class="dashboard-sidebar" id="dashSidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="brand-logo" aria-label="SyncPoint Homepage">
+          <svg class="brand-logo-svg" viewBox="0 0 250 56" height="38" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SyncPoint">
+            <defs>
+              <linearGradient id="spCalGradD1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00A3FF" />
+                <stop offset="50%" stop-color="#2563EB" />
+                <stop offset="100%" stop-color="#4F46E5" />
+              </linearGradient>
+              <linearGradient id="spOrbitGradD1" x1="0%" y1="50%" x2="100%" y2="50%">
+                <stop offset="0%" stop-color="#00D2FF" />
+                <stop offset="70%" stop-color="#2563EB" />
+                <stop offset="100%" stop-color="#8B5CF6" />
+              </linearGradient>
+              <filter id="spGlowD1" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2563EB" flood-opacity="0.25"/>
+              </filter>
+            </defs>
+            <g class="sp-icon-group" filter="url(#spGlowD1)">
+            <rect x="8" y="10" width="40" height="36" rx="9" fill="url(#spCalGradD1)" />
+            <rect x="17" y="5" width="4" height="10" rx="2" fill="#00D2FF" />
+            <rect x="33" y="5" width="4" height="10" rx="2" fill="#38BDF8" />
+            <rect x="13.5" y="21" width="29" height="19" rx="4" fill="#FFFFFF" fill-opacity="0.96" />
+            <rect x="17.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="17.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <path d="M 4 33 C 4 48, 22 55, 45 47 C 52 44, 56 39, 57 34" stroke="url(#spOrbitGradD1)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <circle cx="44" cy="40" r="8.5" fill="#0066FF" stroke="#FFFFFF" stroke-width="2.5" />
+            <path d="M 40.5 40 L 43 42.5 L 48 37.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <text x="64" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-sync">Sync</text>
+          <text x="126" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">Po</text>
+          <rect x="160.5" y="21" width="4.5" height="14" rx="1.5" class="sp-pin-fill" fill="#0066FF" />
+          <path d="M 162.75 9 C 160.2 9, 158.2 11, 158.2 13.5 C 158.2 16.5, 162.75 19.5, 162.75 19.5 C 162.75 19.5, 167.3 16.5, 167.3 13.5 C 167.3 11, 165.3 9, 162.75 9 Z" class="sp-pin-fill" fill="#0066FF" />
+          <circle cx="162.75" cy="13.2" r="1.6" fill="#FFFFFF" />
+          <text x="169" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">nt</text>
+          <text x="66" y="49" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="600" font-size="8.5" letter-spacing="0.1em" class="sp-tagline">Schedule <tspan fill="#0066FF">•</tspan> Manage <tspan fill="#0066FF">•</tspan> Grow</text>
+          </svg>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-title">Operations</div>
+        <a href="index.html" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span>Overview</span>
+        </a>
+        <a href="calendar.html" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>Calendar</span>
+        </a>
+        <a href="bookings.html" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span>Bookings</span>
+        </a>
+        <a href="staff.html" class="sidebar-link active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Staff Availability</span>
+        </a>
+
+        <div class="sidebar-section-title">Intelligence</div>
+        <a href="analytics.html" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Analytics</span>
+        </a>
+        <a href="settings.html" class="sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-badge">
+          <div class="user-avatar">SM</div>
+          <div class="user-info">
+            <span class="user-name">Dr. Sarah Mitchell</span>
+            <span class="user-role">Workspace Admin</span>
+          </div>
+        </div>
+        <a href="../login.html" title="Sign out" style="color:var(--text-light);"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="dashboard-main">
+      <!-- Topbar -->
+      <header class="dashboard-topbar">
+        <div class="topbar-left">
+          <button type="button" class="btn-icon d-lg-none" id="dashMenuToggle" aria-label="Toggle sidebar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+          </button>
+          <div class="topbar-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="staffSearchInput" placeholder="Search team members by name or role...">
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <!-- RTL Toggle -->
+          <button type="button" class="btn-icon rtl-toggle-btn" aria-label="Toggle RTL"><span class="rtl-label" style="font-size:0.75rem; font-weight:700;">RTL</span></button>
+
+          <!-- Theme Toggle -->
+          <button type="button" class="btn-icon theme-toggle-btn" aria-label="Toggle theme">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="icon-sun" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+
+          <button type="button" class="btn btn-primary btn-sm" onclick="openStaffModal('Add New Provider', '', '', '', '09:00', '17:00')">+ Add Provider</button>
+        </div>
+      </header>
+
+      <!-- Staff Content -->
+      <main class="dashboard-content">
+        <!-- Title & Action Bar -->
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+          <div>
+            <h1 style="font-size:1.75rem; font-weight:800; margin-bottom:0.25rem;">Staff Availability & Rosters</h1>
+            <p style="color:var(--text-muted); margin:0;">Configure shift hours, buffer intervals, paid time off, and assigned services for each practitioner.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <span class="badge" style="background:var(--success-light); color:var(--success); font-size:0.875rem; padding:0.5rem 0.85rem;">6 Providers Active</span>
+          </div>
+        </div>
+
+        <!-- Department Filter Pills -->
+        <div class="d-flex gap-2 flex-wrap mb-4">
+          <button class="btn btn-sm btn-primary staff-filter-pill" data-dept="all">All Departments (6)</button>
+          <button class="btn btn-sm btn-outline staff-filter-pill" data-dept="Clinical">Clinical Health (2)</button>
+          <button class="btn btn-sm btn-outline staff-filter-pill" data-dept="Consulting">Strategy & Advisory (1)</button>
+          <button class="btn btn-sm btn-outline staff-filter-pill" data-dept="Wellness">Salon & Wellness (1)</button>
+          <button class="btn btn-sm btn-outline staff-filter-pill" data-dept="Real Estate">Property Advisory (1)</button>
+          <button class="btn btn-sm btn-outline staff-filter-pill" data-dept="Athletics">Athletic Coaching (1)</button>
+        </div>
+
+        <!-- Staff Cards Grid -->
+        <div class="row g-4" id="staffCardsContainer">
+
+          <!-- Staff 1: Dr. Evelyn Vance -->
+          <div class="col-lg-6 staff-item" data-dept="Clinical" data-name="Dr. Evelyn Vance">
+            <div class="dash-card h-100">
+              <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="user-avatar" style="width:48px; height:48px; font-size:1.1rem; background:linear-gradient(135deg, #2563eb, #38bdf8);">EV</div>
+                  <div>
+                    <h3 style="font-size:1.15rem; font-weight:800; margin:0;">Dr. Evelyn Vance</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin:0;">Senior Clinical Practitioner • MD, FACP</p>
+                  </div>
+                </div>
+                <span class="badge" style="background:var(--success-light); color:var(--success); font-size:0.75rem;">Online & Syncing</span>
+              </div>
+
+              <!-- Services Assigned -->
+              <div class="mb-3">
+                <div style="font-size:0.78rem; font-weight:700; color:var(--text-light); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.35rem;">Assigned Services</div>
+                <div class="d-flex gap-1 flex-wrap">
+                  <span class="badge" style="background:var(--primary-light); color:var(--primary); font-size:0.75rem;">Comprehensive Health Intake (60m)</span>
+                  <span class="badge" style="background:var(--primary-light); color:var(--primary); font-size:0.75rem;">Follow-up Telehealth (30m)</span>
+                </div>
+              </div>
+
+              <!-- Working Days & Hours Matrix -->
+              <div class="rounded-3 p-3 mb-3 border" style="background:var(--bg-subtle); border-color:var(--border-subtle) !important;">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span style="font-size:0.85rem; font-weight:700;">Working Hours</span>
+                  <span style="font-size:0.78rem; color:var(--text-light);">Mon - Fri: 08:30 AM – 04:30 PM</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span style="font-size:0.85rem; font-weight:700;">Break & Buffer</span>
+                  <span style="font-size:0.78rem; color:var(--warning);">12:30 PM – 01:30 PM (Daily Lunch) + 15m Buffer</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span style="font-size:0.85rem; font-weight:700;">Upcoming Day Off</span>
+                  <span style="font-size:0.78rem; color:var(--danger); font-weight:600;">Friday, Oct 24 (Conference)</span>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end gap-2">
+                <button type="button" class="btn btn-sm btn-outline" onclick="openStaffModal('Edit Schedule: Dr. Evelyn Vance', 'Dr. Evelyn Vance', 'Clinical', 'Comprehensive Health Intake', '08:30', '16:30')">Edit Hours & Breaks</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Staff 2: Marcus Sterling -->
+          <div class="col-lg-6 staff-item" data-dept="Consulting" data-name="Marcus Sterling">
+            <div class="dash-card h-100">
+              <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="user-avatar" style="width:48px; height:48px; font-size:1.1rem; background:linear-gradient(135deg, #4f46e5, #06b6d4);">MS</div>
+                  <div>
+                    <h3 style="font-size:1.15rem; font-weight:800; margin:0;">Marcus Sterling</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin:0;">Managing Partner • MBA, Strategy</p>
+                  </div>
+                </div>
+                <span class="badge" style="background:var(--success-light); color:var(--success); font-size:0.75rem;">Online & Syncing</span>
+              </div>
+
+              <div class="mb-3">
+                <div style="font-size:0.78rem; font-weight:700; color:var(--text-light); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.35rem;">Assigned Services</div>
+                <div class="d-flex gap-1 flex-wrap">
+                  <span class="badge" style="background:var(--primary-light); color:var(--primary); font-size:0.75rem;">Executive Strategy Advisory (60m)</span>
+                  <span class="badge" style="background:var(--primary-light); color:var(--primary); font-size:0.75rem;">Board Due Diligence (90m)</span>
+                </div>
+              </div>
+
+              <div class="rounded-3 p-3 mb-3 border" style="background:var(--bg-subtle); border-color:var(--border-subtle) !important;">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span style="font-size:0.85rem; font-weight:700;">Working Hours</span>
+                  <span style="font-size:0.78rem; color:var(--text-light);">Tue - Sat: 09:00 AM – 06:00 PM</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span style="font-size:0.85rem; font-weight:700;">Break & Buffer</span>
+                  <span style="font-size:0.78rem; color:var(--warning);">01:00 PM – 02:00 PM (Executive Lunch) + 20m Buffer</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span style="font-size:0.85rem; font-weight:700;">Upcoming Day Off</span>
+                  <span style="font-size:0.78rem; color:var(--text-light);">None scheduled this month</span>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end gap-2">
+                <button type="button" class="btn btn-sm btn-outline" onclick="openStaffModal('Edit Schedule: Marcus Sterling', 'Marcus Sterling', 'Consulting', 'Executive Strategy Advisory', '09:00', '18:00')">Edit Hours & Breaks</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Staff 3: Chloe Bennett -->
+          <div class="col-lg-6 staff-item" data-dept="Wellness" data-name="Chloe Bennett">
+            <div class="dash-card h-100">
+              <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="user-avatar" style="width:48px; height:48px; font-size:1.1rem; background:linear-gradient(135deg, #ec4899, #8b5cf6);">CB</div>
+                  <div>
+                    <h3 style="font-size:1.15rem; font-weight:800; margin:0;">Chloe Bennett</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin:0;">Master Stylist & Aesthetic Director</p>
+                  </div>
+                </div>
+                <span class="badge" style="background:var(--success-light); color:var(--success); font-size:0.75rem;">Online & Syncing</span>
+              </div>
+
+              <div class="mb-3">
+                <div style="font-size:0.78rem; font-weight:700; color:var(--text-light); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.35rem;">Assigned Services</div>
+                <div class="d-flex gap-1 flex-wrap">
+                  <span class="badge" style="background:var(--primary-light); color:var(--primary); font-size:0.75rem;">Luxury Styling & Treatment (90m)</span>
+                  <span class="badge" style="background:var(--primary-light); color:var(--primary); font-size:0.75rem;">Color Formulation Consultation (45m)</span>
+                </div>
+              </div>
+
+              <div class="rounded-3 p-3 mb-3 border" style="background:var(--bg-subtle); border-color:var(--border-subtle) !important;">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span style="font-size:0.85rem; font-weight:700;">Working Hours</span>
+                  <span style="font-size:0.78rem; color:var(--text-light);">Wed - Sun: 10:00 AM – 07:00 PM</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span style="font-size:0.85rem; font-weight:700;">Break & Buffer</span>
+                  <span style="font-size:0.78rem; color:var(--warning);">02:00 PM – 03:00 PM (Sanitization Break) + 15m Buffer</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span style="font-size:0.85rem; font-weight:700;">Upcoming Day Off</span>
+                  <span style="font-size:0.78rem; color:var(--danger); font-weight:600;">Mon & Tue (Weekly Rest)</span>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end gap-2">
+                <button type="button" class="btn btn-sm btn-outline" onclick="openStaffModal('Edit Schedule: Chloe Bennett', 'Chloe Bennett', 'Wellness', 'Luxury Styling & Treatment', '10:00', '19:00')">Edit Hours & Breaks</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Staff 4: Elena Rostova -->
+          <div class="col-lg-6 staff-item" data-dept="Real Estate" data-name="Elena Rostova">
+            <div class="dash-card h-100">
+              <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="user-avatar" style="width:48px; height:48px; font-size:1.1rem; background:linear-gradient(135deg, #10b981, #06b6d4);">ER</div>
+                  <div>
+                    <h3 style="font-size:1.15rem; font-weight:800; margin:0;">Elena Rostova</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin:0;">Principal Broker & Private Client Lead</p>
+                  </div>
+                </div>
+                <span class="badge" style="background:var(--success-light); color:var(--success); font-size:0.75rem;">Online & Syncing</span>
+              </div>
+
+              <div class="mb-3">
+                <div style="font-size:0.78rem; font-weight:700; color:var(--text-light); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.35rem;">Assigned Services</div>
+                <div class="d-flex gap-1 flex-wrap">
+                  <span class="badge" style="background:var(--primary-light); color:var(--primary); font-size:0.75rem;">Property Portfolio Consultation (45m)</span>
+                  <span class="badge" style="background:var(--primary-light); color:var(--primary); font-size:0.75rem;">On-site Architecture Tour (90m)</span>
+                </div>
+              </div>
+
+              <div class="rounded-3 p-3 mb-3 border" style="background:var(--bg-subtle); border-color:var(--border-subtle) !important;">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span style="font-size:0.85rem; font-weight:700;">Working Hours</span>
+                  <span style="font-size:0.78rem; color:var(--text-light);">Mon - Fri: 09:00 AM – 05:00 PM</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span style="font-size:0.85rem; font-weight:700;">Break & Buffer</span>
+                  <span style="font-size:0.78rem; color:var(--warning);">12:00 PM – 01:00 PM + 30m Travel Buffer</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span style="font-size:0.85rem; font-weight:700;">Upcoming Day Off</span>
+                  <span style="font-size:0.78rem; color:var(--text-light);">Nov 04 (Personal)</span>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end gap-2">
+                <button type="button" class="btn btn-sm btn-outline" onclick="openStaffModal('Edit Schedule: Elena Rostova', 'Elena Rostova', 'Real Estate', 'Property Portfolio Consultation', '09:00', '17:00')">Edit Hours & Breaks</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Availability Edit Modal -->
+  <div class="modal-backdrop" id="staffEditModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="staffModalTitle" style="font-size:1.15rem; font-weight:800; margin:0;">Edit Provider Schedule</h3>
+        <button type="button" class="btn-icon close-staff-modal" aria-label="Close modal">✕</button>
+      </div>
+      <form id="staffScheduleForm">
+        <div class="modal-body">
+          <input type="hidden" id="staffModalName">
+
+          <div class="form-group mb-3">
+            <label class="form-label">Working Days</label>
+            <div class="d-flex gap-2 flex-wrap">
+              <label class="d-flex align-items-center gap-1 small"><input type="checkbox" checked> Mon</label>
+              <label class="d-flex align-items-center gap-1 small"><input type="checkbox" checked> Tue</label>
+              <label class="d-flex align-items-center gap-1 small"><input type="checkbox" checked> Wed</label>
+              <label class="d-flex align-items-center gap-1 small"><input type="checkbox" checked> Thu</label>
+              <label class="d-flex align-items-center gap-1 small"><input type="checkbox" checked> Fri</label>
+              <label class="d-flex align-items-center gap-1 small"><input type="checkbox"> Sat</label>
+              <label class="d-flex align-items-center gap-1 small"><input type="checkbox"> Sun</label>
+            </div>
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-sm-6 form-group">
+              <label class="form-label" for="staffStartTime">Shift Starts *</label>
+              <input type="time" id="staffStartTime" class="form-control" value="09:00" required>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label class="form-label" for="staffEndTime">Shift Ends *</label>
+              <input type="time" id="staffEndTime" class="form-control" value="17:00" required>
+            </div>
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-sm-6 form-group">
+              <label class="form-label" for="staffLunchBreak">Lunch Break Period</label>
+              <select id="staffLunchBreak" class="form-control">
+                <option value="12:00 - 13:00">12:00 PM – 01:00 PM</option>
+                <option value="12:30 - 13:30">12:30 PM – 01:30 PM</option>
+                <option value="13:00 - 14:00">01:00 PM – 02:00 PM</option>
+              </select>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label class="form-label" for="staffBufferMin">Buffer Between Appts</label>
+              <select id="staffBufferMin" class="form-control">
+                <option value="10">10 Minutes</option>
+                <option value="15" selected>15 Minutes</option>
+                <option value="20">20 Minutes</option>
+                <option value="30">30 Minutes</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="staffDayOff">Scheduled Time-Off / Day Off</label>
+            <input type="date" id="staffDayOff" class="form-control">
+            <small style="color:var(--text-light);">This provider will be marked unavailable for booking on this date.</small>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-outline close-staff-modal">Cancel</button>
+          <button type="submit" class="btn btn-sm btn-primary">Save Roster Settings</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    // Staff modal and filter handlers
+    const staffModal = document.getElementById('staffEditModal');
+    const staffModalTitle = document.getElementById('staffModalTitle');
+    const staffModalName = document.getElementById('staffModalName');
+    const staffForm = document.getElementById('staffScheduleForm');
+    const closeBtns = document.querySelectorAll('.close-staff-modal');
+
+    function openStaffModal(title, name, dept, service, start, end) {
+      if (!staffModal) return;
+      staffModalTitle.textContent = title;
+      staffModalName.value = name;
+      document.getElementById('staffStartTime').value = start || '09:00';
+      document.getElementById('staffEndTime').value = end || '17:00';
+      staffModal.classList.add('show');
+    }
+
+    closeBtns.forEach(b => b.addEventListener('click', () => {
+      if (staffModal) staffModal.classList.remove('show');
+    }));
+
+    if (staffForm) {
+      staffForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = staffModalName.value || 'Provider';
+        if (staffModal) staffModal.classList.remove('show');
+        alert(`Working hours and buffer policies for ${name} updated successfully! Calendars will recalculate open booking slots.`);
+      });
+    }
+
+    // Filter pills
+    const pills = document.querySelectorAll('.staff-filter-pill');
+    const staffItems = document.querySelectorAll('.staff-item');
+    pills.forEach(p => {
+      p.addEventListener('click', () => {
+        pills.forEach(x => { x.classList.remove('btn-primary'); x.classList.add('btn-outline'); });
+        p.classList.remove('btn-outline');
+        p.classList.add('btn-primary');
+        const dept = p.getAttribute('data-dept');
+        staffItems.forEach(item => {
+          if (dept === 'all' || item.getAttribute('data-dept') === dept) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Search
+    const searchInp = document.getElementById('staffSearchInput');
+    if (searchInp) {
+      searchInp.addEventListener('input', () => {
+        const q = searchInp.value.toLowerCase().trim();
+        staffItems.forEach(item => {
+          const name = item.getAttribute('data-name').toLowerCase();
+          const dept = item.getAttribute('data-dept').toLowerCase();
+          if (name.includes(q) || dept.includes(q)) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    }
+
+    // Sidebar toggle
+    const dashMenuToggle = document.getElementById('dashMenuToggle');
+    const dashSidebar = document.getElementById('dashSidebar');
+    if (dashMenuToggle && dashSidebar) {
+      dashMenuToggle.addEventListener('click', () => {
+        dashSidebar.classList.toggle('open');
+      });
+      document.addEventListener('click', (e) => {
+        if (!dashSidebar.contains(e.target) && !dashMenuToggle.contains(e.target)) {
+          dashSidebar.classList.remove('open');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

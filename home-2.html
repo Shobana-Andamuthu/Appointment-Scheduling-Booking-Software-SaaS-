@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SyncPoint | Enterprise Multi-Location Appointment & Staff Scheduling (Home 2)</title>
+  <meta name="description" content="Scale your practice with enterprise multi-provider scheduling, intelligent round-robin routing, and advanced booking analytics.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+
+  <!-- Google Fonts: Max 2 Font Families (Outfit & Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
+      corePlugins: { preflight: false }
+    }
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===================================================================
+       PAGE PRELOADER
+       =================================================================== -->
+  <div class="page-preloader" id="pagePreloader" aria-hidden="true">
+    <div class="preloader-backdrop"></div>
+    <div class="preloader-card">
+      <div class="preloader-brand-icon">
+        <div class="preloader-orbit"></div>
+        <div class="preloader-orbit-glow"></div>
+        <div class="preloader-icon-core">
+          <svg viewBox="0 0 64 64" width="50" height="50" fill="none">
+            <defs>
+              <linearGradient id="preCalGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00A3FF"/>
+                <stop offset="50%" stop-color="#2563EB"/>
+                <stop offset="100%" stop-color="#4F46E5"/>
+              </linearGradient>
+            </defs>
+            <rect x="8" y="10" width="46" height="42" rx="11" fill="url(#preCalGrad2)"/>
+            <rect x="18" y="5" width="5" height="11" rx="2.5" fill="#00D2FF"/>
+            <rect x="39" y="5" width="5" height="11" rx="2.5" fill="#38BDF8"/>
+            <rect x="14" y="22" width="34" height="24" rx="5" fill="#FFFFFF" fill-opacity="0.96"/>
+            <rect x="19" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="29" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="39" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="19" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="29" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="39" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <circle cx="49" cy="46" r="10" fill="#2563EB" stroke="#FFFFFF" stroke-width="2.5"/>
+            <path d="M 44.5 46 L 47.5 49 L 53.5 43" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="preloader-brand-title">
+        <span class="preloader-text-sync">Sync</span><span class="preloader-text-point">Point</span>
+      </div>
+      <div class="preloader-progress-track">
+        <div class="preloader-progress-bar"></div>
+      </div>
+      <div class="preloader-caption">
+        <span>Synchronizing workspace</span>
+        <span class="preloader-dots"><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       GLOBAL HEADER & PUBLIC NAVIGATION
+       =================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" id="brandLogo" aria-label="SyncPoint Homepage">
+        <svg class="brand-logo-svg" viewBox="0 0 198 56" height="42" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SyncPoint">
+          <defs>
+            <linearGradient id="spCalGradH2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00C2FF" />
+              <stop offset="50%" stop-color="#0066FF" />
+              <stop offset="100%" stop-color="#3B82F6" />
+            </linearGradient>
+            <linearGradient id="spOrbitGradH2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00D2FF" />
+              <stop offset="50%" stop-color="#0066FF" />
+              <stop offset="100%" stop-color="#8B5CF6" />
+            </linearGradient>
+            <filter id="spGlowH2" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#0066FF" flood-opacity="0.3"/>
+            </filter>
+          </defs>
+          <g class="sp-icon-group" filter="url(#spGlowH2)">
+            <rect x="8" y="10" width="40" height="36" rx="9" fill="url(#spCalGradH2)" />
+            <rect x="17" y="5" width="4" height="10" rx="2" fill="#00D2FF" />
+            <rect x="33" y="5" width="4" height="10" rx="2" fill="#38BDF8" />
+            <rect x="13.5" y="21" width="29" height="19" rx="4" fill="#FFFFFF" fill-opacity="0.96" />
+            <rect x="17.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="17.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <path d="M 4 33 C 4 48, 22 55, 45 47 C 52 44, 56 39, 57 34" stroke="url(#spOrbitGradH2)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <circle cx="44" cy="40" r="8.5" fill="#0066FF" stroke="#FFFFFF" stroke-width="2.5" />
+            <path d="M 40.5 40 L 43 42.5 L 48 37.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <text x="64" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-sync">Sync</text>
+          <text x="126" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">Po</text>
+          <rect x="160.5" y="21" width="4.5" height="14" rx="1.5" class="sp-pin-fill" fill="#0066FF" />
+          <path d="M 162.75 9 C 160.2 9, 158.2 11, 158.2 13.5 C 158.2 16.5, 162.75 19.5, 162.75 19.5 C 162.75 19.5, 167.3 16.5, 167.3 13.5 C 167.3 11, 165.3 9, 162.75 9 Z" class="sp-pin-fill" fill="#0066FF" />
+          <circle cx="162.75" cy="13.2" r="1.6" fill="#FFFFFF" />
+          <text x="169" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">nt</text>
+          <text x="66" y="49" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="600" font-size="8.5" letter-spacing="0.1em" class="sp-tagline">Schedule <tspan fill="#0066FF">•</tspan> Manage <tspan fill="#0066FF">•</tspan> Grow</text>
+        </svg>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-links" aria-label="Main Navigation">
+        <!-- Home Dropdown -->
+        <div class="nav-dropdown" id="homeDropdown">
+          <button type="button" class="nav-link nav-dropdown-btn active" id="homeDropdownBtn" aria-haspopup="true" aria-expanded="false">
+            <span>Home</span>
+            <svg class="dropdown-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav-dropdown-menu" id="homeDropdownMenu" role="menu">
+            <a href="index.html" class="dropdown-menu-item" role="menuitem">
+              <div class="dropdown-item-header">
+                <span class="dropdown-item-title">Home 1</span>
+                <span class="nav-badge-pill upcoming">Phase 1</span>
+              </div>
+              <span class="dropdown-item-sub">Appointment Automation (Phase 1)</span>
+            </a>
+            <a href="home-2.html" class="dropdown-menu-item active" role="menuitem">
+              <div class="dropdown-item-header">
+                <span class="dropdown-item-title">Home 2</span>
+                <span class="nav-badge-pill current">Active</span>
+              </div>
+              <span class="dropdown-item-sub">Enterprise Multi-Location SaaS</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="dashboard/index.html" class="nav-link">Dashboard</a>
+      </nav>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <!-- RTL Toggle -->
+        <button type="button" class="btn-icon rtl-toggle-btn" id="rtlToggleBtn" aria-label="Toggle text direction (LTR/RTL)" title="Switch text direction">
+          <span class="rtl-label" style="font-size:0.75rem; font-weight:700;">RTL</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button type="button" class="btn-icon theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme mode" title="Switch light or dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="icon-sun" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <!-- Auth CTAs -->
+        <a href="login.html" class="btn btn-secondary btn-sm d-none d-sm-inline-flex">Log In</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Start Free Trial</a>
+
+        <!-- Hamburger Toggle -->
+        <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Open mobile navigation menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+      <!-- Mobile Drawer & Overlay -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile Navigation Drawer">
+    <div class="drawer-header">
+      <a href="index.html" class="brand-logo" aria-label="SyncPoint Homepage">
+        <svg class="brand-logo-svg" viewBox="0 0 198 56" height="38" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SyncPoint">
+          <defs>
+            <linearGradient id="spCalGradMob" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00A3FF" />
+              <stop offset="50%" stop-color="#2563EB" />
+              <stop offset="100%" stop-color="#4F46E5" />
+            </linearGradient>
+            <linearGradient id="spOrbitGradMob" x1="0%" y1="50%" x2="100%" y2="50%">
+              <stop offset="0%" stop-color="#00D2FF" />
+              <stop offset="70%" stop-color="#2563EB" />
+              <stop offset="100%" stop-color="#8B5CF6" />
+            </linearGradient>
+          </defs>
+          <g class="sp-icon-group">
+            <rect x="8" y="10" width="40" height="36" rx="9" fill="url(#spCalGradMob)" />
+            <rect x="17" y="5" width="4" height="10" rx="2" fill="#00D2FF" />
+            <rect x="33" y="5" width="4" height="10" rx="2" fill="#38BDF8" />
+            <rect x="13.5" y="21" width="29" height="19" rx="4" fill="#FFFFFF" fill-opacity="0.96" />
+            <rect x="17.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="17.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <path d="M 4 33 C 4 48, 22 55, 45 47 C 52 44, 56 39, 57 34" stroke="url(#spOrbitGradMob)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <circle cx="44" cy="40" r="8.5" fill="#0066FF" stroke="#FFFFFF" stroke-width="2.5" />
+            <path d="M 40.5 40 L 43 42.5 L 48 37.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <text x="64" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-sync">Sync</text>
+          <text x="126" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">Po</text>
+          <rect x="160.5" y="21" width="4.5" height="14" rx="1.5" class="sp-pin-fill" fill="#0066FF" />
+          <path d="M 162.75 9 C 160.2 9, 158.2 11, 158.2 13.5 C 158.2 16.5, 162.75 19.5, 162.75 19.5 C 162.75 19.5, 167.3 16.5, 167.3 13.5 C 167.3 11, 165.3 9, 162.75 9 Z" class="sp-pin-fill" fill="#0066FF" />
+          <circle cx="162.75" cy="13.2" r="1.6" fill="#FFFFFF" />
+          <text x="169" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">nt</text>
+          <text x="66" y="49" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="600" font-size="8.5" letter-spacing="0.1em" class="sp-tagline">Schedule <tspan fill="#0066FF">•</tspan> Manage <tspan fill="#0066FF">•</tspan> Grow</text>
+        </svg>
+      </a>
+      <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close navigation drawer">✕</button>
+    </div>
+
+    <div class="mobile-nav-links">
+      <!-- Collapsible Mobile Home Item -->
+      <div class="mobile-dropdown" id="mobileHomeDropdown">
+        <button type="button" class="mobile-nav-link mobile-dropdown-toggle active" id="mobileHomeToggleBtn" aria-expanded="false">
+          <span>Home</span>
+          <svg class="dropdown-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="mobile-dropdown-menu">
+          <a href="index.html" class="mobile-dropdown-item">
+            <span>Home 1</span>
+            <span class="nav-badge-pill current">Phase 1</span>
+          </a>
+          <a href="home-2.html" class="mobile-dropdown-item active">
+            <span>Home 2</span>
+            <span class="nav-badge-pill upcoming">Phase 2</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="features.html" class="mobile-nav-link">Features</a>
+      <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+      <a href="dashboard/index.html" class="mobile-nav-link">Dashboard Portal</a>
+    </div>
+
+    <div style="margin-top:auto; display:flex; flex-direction:column; gap:0.75rem; padding-top:1.5rem; border-top:1px solid var(--border-subtle);">
+      <a href="login.html" class="btn btn-secondary w-100">Log In</a>
+      <a href="register.html" class="btn btn-primary w-100">Start Free Trial</a>
+    </div>
+  </aside>
+
+  <!-- ===================================================================
+       HOME 2 — SECTION 1: FULL-SCREEN ALTERNATIVE HERO (Distinct Layout)
+       =================================================================== -->
+  <section class="hero-fullscreen" id="home2Hero" style="background: radial-gradient(circle at 50% 10%, rgba(14, 165, 233, 0.12) 0%, var(--bg-main) 70%);">
+    <div class="container d-flex flex-column align-items-center text-center justify-content-center py-4">
+      <div class="hero-pill mb-3">
+        <span class="hero-pill-badge" style="background:#0284c7;">Enterprise Suite</span>
+        <span class="hero-pill-text">Multi-Location & Provider Scheduling</span>
+      </div>
+
+      <h1 class="hero-title" style="max-width:920px; margin-bottom:1.25rem;">
+        Complete Appointment & Provider Scheduling for <span class="hero-gradient-text" style="background:linear-gradient(135deg, #0284c7 0%, #4f46e5 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Modern Enterprises</span>
+      </h1>
+
+      <p class="hero-desc" style="max-width:720px; margin-bottom:2rem;">
+        Coordinate hundreds of staff calendars across multiple branch locations. Give clients instant self-serve booking while automating shift allocation, deposits, and real-time reminders.
+      </p>
+
+      <div class="d-flex gap-3 flex-wrap justify-content-center mb-4">
+        <a href="register.html" class="btn btn-primary btn-lg" style="background:#0284c7; border-color:#0284c7;">
+          <span>Start Enterprise Trial</span>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+        <a href="#booking-experience" class="btn btn-secondary btn-lg">
+          <span>Test Live Booking Flow</span>
+        </a>
+      </div>
+
+      <!-- Hero 2 Interface Preview Frame -->
+      <div class="hero-image-wrapper mt-3" style="max-width:980px; box-shadow:0 25px 50px -12px rgba(2, 132, 199, 0.25);">
+        <img src="assets/images/home2-hero.jpg" alt="SyncPoint Enterprise Multi-Provider Calendar & Staff Booking Matrix" width="980" height="550">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       HOME 2 — SECTION 2: INTERACTIVE ONLINE BOOKING EXPERIENCE
+       =================================================================== -->
+  <section class="section section-subtle" id="booking-experience">
+    <div class="container">
+      <div class="section-head-start mb-4">
+        <span class="badge-tag">Self-Serve Journey</span>
+        <h2 class="section-title">
+          Frictionless 3-Step <span class="title-highlight">Client Booking Experience</span>
+        </h2>
+        <p class="section-subtitle">
+          Give your prospective customers an intuitive, branded booking portal that guides them smoothly to a confirmed meeting in seconds.
+        </p>
+      </div>
+
+      <div class="row g-4 align-items-center">
+        <!-- Interactive Booking Widget -->
+        <div class="col-lg-7">
+          <div class="p-4 p-md-5 rounded-4 shadow-sm" style="background:var(--bg-card); border:1px solid var(--border-card);">
+            <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom">
+              <div>
+                <span class="badge mb-1" style="background:var(--primary-light); color:var(--primary);">Step 1 of 3</span>
+                <h4 style="font-weight:700; margin:0;">Branch & Service Selection</h4>
+              </div>
+              <div style="font-size:0.85rem; color:var(--text-light);">Downtown Medical Hub</div>
+            </div>
+
+            <div class="row g-3 mb-4">
+              <div class="col-sm-6">
+                <div class="p-3 rounded-3" style="border:2px solid var(--primary); background:var(--primary-light);">
+                  <div style="font-weight:700; color:var(--primary);">Medical Consultation</div>
+                  <div style="font-size:0.8rem; color:var(--text-muted);">45 mins • $140</div>
+                  <div style="font-size:0.75rem; color:var(--success); font-weight:700; margin-top:0.35rem; display:flex; align-items:center; gap:0.3rem;">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Selected
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="p-3 rounded-3" style="border:1px solid var(--border-card); background:var(--bg-subtle);">
+                  <div style="font-weight:700;">Diagnostic Follow-up</div>
+                  <div style="font-size:0.8rem; color:var(--text-muted);">30 mins • $85</div>
+                  <div style="font-size:0.75rem; color:var(--text-light); margin-top:0.35rem;">Available Today</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label style="font-size:0.85rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:0.5rem;">Assigned Clinician / Provider</label>
+              <div class="d-flex align-items-center gap-3 p-3 rounded-3" style="background:var(--bg-subtle); border:1px solid var(--border-card);">
+                <div style="width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg, #2563eb, #3b82f6); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; flex-shrink:0;">DR</div>
+                <div>
+                  <div style="font-weight:700;">Dr. David Rostova, MD</div>
+                  <div style="font-size:0.8rem; color:var(--text-light);">Senior Practitioner • 5 Open Slots Tomorrow</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center pt-3 border-top flex-wrap gap-2">
+              <span style="font-size:0.85rem; color:var(--text-muted); display:inline-flex; align-items:center; gap:0.4rem;">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="var(--success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Instant SMS &amp; Email confirmation
+              </span>
+              <a href="register.html" class="btn btn-primary">Proceed to Confirmation ➔</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Explanatory Highlights -->
+        <div class="col-lg-5">
+          <div class="d-flex flex-column gap-3">
+            <div class="feature-benefit-card">
+              <div style="width:48px; height:48px; border-radius:12px; background:var(--primary-light); color:var(--primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <div>
+                <h4 style="font-weight:700; margin-bottom:0.35rem; font-size:1.05rem;">Instant Timezone Detection</h4>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.55; margin:0;">Eliminates missed appointments across time zones by automatically translating open slots into client local time.</p>
+              </div>
+            </div>
+
+            <div class="feature-benefit-card">
+              <div style="width:48px; height:48px; border-radius:12px; background:var(--success-light); color:var(--success); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              </div>
+              <div>
+                <h4 style="font-weight:700; margin-bottom:0.35rem; font-size:1.05rem;">Stripe &amp; PayPal Pre-Payments</h4>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.55; margin:0;">Capture deposits or full consult fees during booking to drastically cut no-shows down to below 4%.</p>
+              </div>
+            </div>
+
+            <div class="feature-benefit-card">
+              <div style="width:48px; height:48px; border-radius:12px; background:var(--warning-light); color:var(--warning); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <div>
+                <h4 style="font-weight:700; margin-bottom:0.35rem; font-size:1.05rem;">Dynamic Intake Questions</h4>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.55; margin:0;">Collect medical history, vehicle details, or legal briefs right on the booking screen with secure file attachments.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       HOME 2 — SECTION 3: SMART CALENDAR & STAFF AVAILABILITY
+       =================================================================== -->
+  <section class="section" id="staff-availability">
+    <div class="container">
+      <div class="section-head-start mb-4">
+        <span class="badge-tag">Roster &amp; Conflict Control</span>
+        <h2 class="section-title">
+          Intelligent Staff Availability &amp; <span class="title-highlight">Shift Balancing</span>
+        </h2>
+        <p class="section-subtitle">
+          Ensure fair meeting distribution across providers, block breaks automatically, and synchronize team time off seamlessly.
+        </p>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-4">
+          <div class="benefit-card h-100">
+            <div class="benefit-icon-box">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+            </div>
+            <h3 class="benefit-title">Round-Robin Equalization</h3>
+            <p class="benefit-desc">Automatically routes incoming appointments to providers with the fewest booked hours to maintain balanced team workloads.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="benefit-card h-100">
+            <div class="benefit-icon-box">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="12 8 12 12 14 14"/></svg>
+            </div>
+            <h3 class="benefit-title">Automated Buffer Times</h3>
+            <p class="benefit-desc">Add 10–30 minute buffers before and after appointments so providers can prepare clinical notes and commute without stress.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="benefit-card h-100">
+            <div class="benefit-icon-box">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 class="benefit-title">Multi-Host Collective Meetings</h3>
+            <p class="benefit-desc">Schedule complex client sessions requiring multiple specialists only when all necessary team members are simultaneously free.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual Staff Availability Matrix Preview -->
+      <div class="staff-matrix-card">
+        <div class="d-flex justify-content-between align-items-center p-3 px-md-4 border-bottom flex-wrap gap-2" style="background:var(--bg-card);">
+          <div class="d-flex align-items-center gap-2">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <h4 style="font-weight:700; margin:0; font-size:1.1rem;">Staff Weekly Working Matrix &amp; Shift Blocks</h4>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge" style="background:var(--success-light); color:var(--success); font-weight:700; display:inline-flex; align-items:center; gap:0.4rem; padding:0.4rem 0.75rem;">
+              <span class="status-dot-pulse"></span>
+              0 Active Conflicts
+            </span>
+            <span class="badge" style="background:var(--bg-subtle); color:var(--text-muted); font-weight:600; padding:0.4rem 0.75rem;">
+              Active Roster • Q4
+            </span>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="staff-matrix-table align-middle">
+            <thead>
+              <tr>
+                <th>Provider Name</th>
+                <th>Assigned Specialization</th>
+                <th>Working Hours</th>
+                <th>Break Buffers</th>
+                <th>Weekly Capacity</th>
+                <th>Live Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="clinician-cell">
+                    <div class="clinician-avatar" style="background:linear-gradient(135deg, #2563eb, #3b82f6);">EV</div>
+                    <div>
+                      <strong style="color:var(--text-main); font-size:0.95rem;">Dr. Evelyn Vance</strong>
+                      <div style="font-size:0.75rem; color:var(--text-light);">Primary Clinician</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span style="font-weight:600; color:var(--text-main);">Clinical Consultations</span></td>
+                <td>
+                  <div class="d-flex align-items-center gap-1" style="color:var(--text-muted);">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 15 15"/></svg>
+                    <span>Mon–Fri, 08:30 – 16:30</span>
+                  </div>
+                </td>
+                <td><span class="badge" style="background:var(--bg-subtle); color:var(--text-muted); font-weight:600;">15 min pre / 15 min post</span></td>
+                <td>
+                  <div style="min-width:110px;">
+                    <div class="d-flex justify-content-between mb-1" style="font-size:0.78rem; font-weight:700;">
+                      <span>32 Appts / wk</span>
+                      <span style="color:var(--primary);">88%</span>
+                    </div>
+                    <div style="height:5px; background:var(--bg-subtle); border-radius:3px; overflow:hidden;">
+                      <div style="width:88%; height:100%; background:var(--primary); border-radius:3px;"></div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="status-badge confirmed">
+                    <span class="status-dot-pulse"></span>
+                    Available
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="clinician-cell">
+                    <div class="clinician-avatar" style="background:linear-gradient(135deg, #0284c7, #06b6d4);">MS</div>
+                    <div>
+                      <strong style="color:var(--text-main); font-size:0.95rem;">Marcus Sterling</strong>
+                      <div style="font-size:0.75rem; color:var(--text-light);">Partner &amp; Legal Lead</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span style="font-weight:600; color:var(--text-main);">Strategy &amp; Legal Retainers</span></td>
+                <td>
+                  <div class="d-flex align-items-center gap-1" style="color:var(--text-muted);">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 15 15"/></svg>
+                    <span>Tue–Sat, 09:00 – 17:00</span>
+                  </div>
+                </td>
+                <td><span class="badge" style="background:var(--bg-subtle); color:var(--text-muted); font-weight:600;">20 min post buffer</span></td>
+                <td>
+                  <div style="min-width:110px;">
+                    <div class="d-flex justify-content-between mb-1" style="font-size:0.78rem; font-weight:700;">
+                      <span>25 Appts / wk</span>
+                      <span style="color:var(--success);">75%</span>
+                    </div>
+                    <div style="height:5px; background:var(--bg-subtle); border-radius:3px; overflow:hidden;">
+                      <div style="width:75%; height:100%; background:var(--success); border-radius:3px;"></div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="status-badge confirmed">
+                    <span class="status-dot-pulse"></span>
+                    Available
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="clinician-cell">
+                    <div class="clinician-avatar" style="background:linear-gradient(135deg, #7c3aed, #a855f7);">CB</div>
+                    <div>
+                      <strong style="color:var(--text-main); font-size:0.95rem;">Chloe Bennett</strong>
+                      <div style="font-size:0.75rem; color:var(--text-light);">Senior Specialist</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span style="font-weight:600; color:var(--text-main);">Aesthetic Treatments</span></td>
+                <td>
+                  <div class="d-flex align-items-center gap-1" style="color:var(--text-muted);">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 15 15"/></svg>
+                    <span>Wed–Sun, 10:00 – 18:00</span>
+                  </div>
+                </td>
+                <td><span class="badge" style="background:var(--bg-subtle); color:var(--text-muted); font-weight:600;">10 min post buffer</span></td>
+                <td>
+                  <div style="min-width:110px;">
+                    <div class="d-flex justify-content-between mb-1" style="font-size:0.78rem; font-weight:700;">
+                      <span>38 Appts / wk</span>
+                      <span style="color:var(--warning);">95%</span>
+                    </div>
+                    <div style="height:5px; background:var(--bg-subtle); border-radius:3px; overflow:hidden;">
+                      <div style="width:95%; height:100%; background:var(--warning); border-radius:3px;"></div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="status-badge pending">
+                    <span class="status-dot-amber"></span>
+                    In Consultation
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       HOME 2 — SECTION 4: AUTOMATED NOTIFICATIONS AND WORKFLOWS
+       =================================================================== -->
+  <section class="section section-subtle" id="automated-workflows">
+    <div class="container">
+      <div class="section-head-start mb-4">
+        <span class="badge-tag">Zero No-Shows</span>
+        <h2 class="section-title">
+          Automated Multi-Channel <span class="title-highlight">Notification Pipelines</span>
+        </h2>
+        <p class="section-subtitle">
+          Trigger automated confirmations, 24-hour reminder SMS messages, WhatsApp alerts, and post-appointment feedback surveys.
+        </p>
+      </div>
+
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <div class="rounded-4 overflow-hidden shadow-lg border" style="border-color:var(--border-card);">
+            <img src="assets/images/home2-reminders-pipeline.jpg" alt="Automated reminders workflow interface" width="700" height="480" class="img-fluid w-100" style="display:block;">
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="d-flex flex-column gap-3">
+            <div class="p-3 rounded-3" style="background:var(--bg-card); border:1px solid var(--border-card);">
+              <div class="d-flex align-items-center gap-2 mb-1">
+                <span class="badge" style="background:var(--primary-light); color:var(--primary);">Trigger 1</span>
+                <strong>Instant Booking Confirmation</strong>
+              </div>
+              <p style="font-size:0.9rem; color:var(--text-muted); margin:0;">Sends Google/Outlook calendar invites with a direct one-click video room URL or directions pin.</p>
+            </div>
+
+            <div class="p-3 rounded-3" style="background:var(--bg-card); border:1px solid var(--border-card);">
+              <div class="d-flex align-items-center gap-2 mb-1">
+                <span class="badge" style="background:var(--warning-light); color:var(--warning);">Trigger 2</span>
+                <strong>24 Hours Prior SMS / WhatsApp Alert</strong>
+              </div>
+              <p style="font-size:0.9rem; color:var(--text-muted); margin:0;">Invites client to reply "YES" to confirm or click a link to self-reschedule without staff assistance.</p>
+            </div>
+
+            <div class="p-3 rounded-3" style="background:var(--bg-card); border:1px solid var(--border-card);">
+              <div class="d-flex align-items-center gap-2 mb-1">
+                <span class="badge" style="background:var(--success-light); color:var(--success);">Trigger 3</span>
+                <strong>1 Hour Prior Direct Alert</strong>
+              </div>
+              <p style="font-size:0.9rem; color:var(--text-muted); margin:0;">Final check-in reminder ensuring clients arrive on time with required documentation in hand.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       HOME 2 — SECTION 5: BOOKING ANALYTICS AND BUSINESS INSIGHTS
+       =================================================================== -->
+  <section class="section" id="analytics-insights">
+    <div class="container">
+      <div class="section-head-start mb-5">
+        <span class="badge-tag">Actionable Intelligence</span>
+        <h2 class="section-title">
+          Deep Booking Analytics &amp; <span class="title-highlight">Revenue Telemetry</span>
+        </h2>
+        <p class="section-subtitle">
+          Understand peak appointment hours, staff utilization rates, cancellation patterns, and monthly recurring booking revenue.
+        </p>
+      </div>
+
+      <div class="row g-4 align-items-center">
+        <!-- Interactive Telemetry Dashboard Preview with Overlays -->
+        <div class="col-lg-6 order-lg-2">
+          <div class="position-relative" style="border-radius:var(--radius-xl); overflow:hidden; box-shadow:0 20px 45px -10px rgba(15, 23, 42, 0.25); border:1px solid var(--border-card);">
+            <img src="assets/images/feature-analytics.jpg" alt="Booking analytics and telemetry dashboard" width="700" height="420" class="img-fluid w-100" style="display:block;">
+            
+            <!-- Live Telemetry Floating Pill - Top Right -->
+            <div class="telemetry-floating-pill" style="top:16px; right:16px;">
+              <span class="status-dot-pulse"></span>
+              <span>Live MRR Telemetry: $68.4K</span>
+            </div>
+
+            <!-- Live Telemetry Floating Pill - Bottom Left -->
+            <div class="telemetry-floating-pill" style="bottom:16px; left:16px; background:rgba(30, 41, 59, 0.92);">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#38bdf8" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <span>+18.4% Bookings MoM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Stat Metric Cards & Micro-Telemetry Breakdown -->
+        <div class="col-lg-6 order-lg-1">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <div class="stat-card h-100">
+                <div class="stat-card-header">
+                  <span style="font-weight:600; color:var(--text-muted); font-size:0.875rem;">Completed Bookings</span>
+                  <span class="stat-pill positive">+18.4%</span>
+                </div>
+                <div class="stat-card-value">1,452</div>
+                <div class="d-flex align-items-center gap-1" style="font-size:0.8rem; color:var(--text-light);">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span>Past 30 days active cycle</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="stat-card h-100">
+                <div class="stat-card-header">
+                  <span style="font-weight:600; color:var(--text-muted); font-size:0.875rem;">Collected Fees</span>
+                  <span class="stat-pill positive">+12.3%</span>
+                </div>
+                <div class="stat-card-value">$68,410</div>
+                <div class="d-flex align-items-center gap-1" style="font-size:0.8rem; color:var(--text-light);">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                  <span>Via Stripe &amp; PayPal gateway</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="stat-card h-100">
+                <div class="stat-card-header">
+                  <span style="font-weight:600; color:var(--text-muted); font-size:0.875rem;">Staff Utilization</span>
+                  <span class="stat-pill positive">84.1%</span>
+                </div>
+                <div class="stat-card-value">84%</div>
+                <div class="d-flex align-items-center gap-1" style="font-size:0.8rem; color:var(--text-light);">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  <span>Optimal billable capacity ratio</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="stat-card h-100">
+                <div class="stat-card-header">
+                  <span style="font-weight:600; color:var(--text-muted); font-size:0.875rem;">Customer Retention</span>
+                  <span class="stat-pill positive">89.5%</span>
+                </div>
+                <div class="stat-card-value">89.5%</div>
+                <div class="d-flex align-items-center gap-1" style="font-size:0.8rem; color:var(--text-light);">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  <span>Repeat client bookings</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Extra Telemetry Micro-Badges Bar -->
+          <div class="mt-3 p-3 rounded-3 d-flex justify-content-between align-items-center flex-wrap gap-2" style="background:var(--bg-subtle); border:1px solid var(--border-card);">
+            <div class="d-flex align-items-center gap-2" style="font-size:0.825rem; color:var(--text-muted);">
+              <span class="status-dot-pulse"></span>
+              <span><strong>Peak Booking Window:</strong> 2:00 PM – 5:30 PM EST</span>
+            </div>
+            <div class="d-flex align-items-center gap-2" style="font-size:0.825rem; color:var(--text-muted);">
+              <span><strong>No-Show Rate:</strong> <span style="color:var(--success); font-weight:700;">1.8%</span> (Industry avg: 14%)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       HOME 2 — SECTION 6: FINAL CTA AND FOOTER
+       =================================================================== -->
+  <section class="section" id="cta2">
+    <div class="container">
+      <div class="cta-banner-wrapper" style="background:linear-gradient(135deg, #0f172a 0%, #0369a1 60%, #0284c7 100%);">
+        <div class="cta-banner-container">
+          <div>
+            <span class="badge" style="background:rgba(255,255,255,0.2); color:#fff; padding:0.4rem 0.9rem; font-size:0.8rem; text-transform:uppercase; margin-bottom:1.25rem; display:inline-block;">Scale Your Enterprise</span>
+            <h2 class="cta-title">Deploy SyncPoint Enterprise Across All Your Clinics & Locations</h2>
+            <p class="cta-subtitle">
+              Ready to eliminate double bookings and maximize provider utilization? Start your free trial today or request a tailored implementation.
+            </p>
+            <div class="d-flex gap-3 flex-wrap mb-4">
+              <a href="register.html" class="btn btn-lg" style="background:#fff; color:#0369a1; font-weight:700;">Start Enterprise Free Trial</a>
+              <a href="contact.html" class="btn btn-lg btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.4);">Speak with Solutions Engineer</a>
+            </div>
+            <div class="d-flex gap-4 flex-wrap text-white-50" style="font-size:0.85rem;">
+              <div class="d-flex align-items-center gap-1">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Unlimited staff seats</span>
+              </div>
+              <div class="d-flex align-items-center gap-1">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Dedicated HIPAA BAA</span>
+              </div>
+              <div class="d-flex align-items-center gap-1">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>24/7 Priority Support</span>
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-lg-block">
+            <div class="rounded-4 overflow-hidden shadow-lg border" style="border-color:rgba(255,255,255,0.2);">
+              <img src="assets/images/home2-enterprise-portal.jpg" alt="Enterprise appointment scheduling portal" width="600" height="340" class="img-fluid w-100" style="display:block;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <svg class="brand-logo-svg" viewBox="0 0 198 56" height="42" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SyncPoint">
+              <g class="sp-icon-group" filter="url(#spGlowH2)">
+            <rect x="8" y="10" width="40" height="36" rx="9" fill="url(#spCalGradH2)" />
+            <rect x="17" y="5" width="4" height="10" rx="2" fill="#00D2FF" />
+            <rect x="33" y="5" width="4" height="10" rx="2" fill="#38BDF8" />
+            <rect x="13.5" y="21" width="29" height="19" rx="4" fill="#FFFFFF" fill-opacity="0.96" />
+            <rect x="17.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="17.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <path d="M 4 33 C 4 48, 22 55, 45 47 C 52 44, 56 39, 57 34" stroke="url(#spOrbitGradH2)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <circle cx="44" cy="40" r="8.5" fill="#0066FF" stroke="#FFFFFF" stroke-width="2.5" />
+            <path d="M 40.5 40 L 43 42.5 L 48 37.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <text x="64" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-sync">Sync</text>
+          <text x="126" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">Po</text>
+          <rect x="160.5" y="21" width="4.5" height="14" rx="1.5" class="sp-pin-fill" fill="#0066FF" />
+          <path d="M 162.75 9 C 160.2 9, 158.2 11, 158.2 13.5 C 158.2 16.5, 162.75 19.5, 162.75 19.5 C 162.75 19.5, 167.3 16.5, 167.3 13.5 C 167.3 11, 165.3 9, 162.75 9 Z" class="sp-pin-fill" fill="#0066FF" />
+          <circle cx="162.75" cy="13.2" r="1.6" fill="#FFFFFF" />
+          <text x="169" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">nt</text>
+          <text x="66" y="49" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="600" font-size="8.5" letter-spacing="0.1em" class="sp-tagline">Schedule <tspan fill="#0066FF">•</tspan> Manage <tspan fill="#0066FF">•</tspan> Grow</text>
+            </svg>
+          </a>
+          <p>The enterprise-grade appointment scheduling automation SaaS built for clinics, advisors, studios, and service teams worldwide.</p>
+          <div class="footer-socials" aria-label="Social media links">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Follow SyncPoint on X (Twitter)" title="X (Twitter)">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 24.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Connect with SyncPoint on LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+              </svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="SyncPoint on GitHub" title="GitHub">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+              </svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="SyncPoint on YouTube" title="YouTube">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+          </div>
+          <div class="footer-trust-badge">
+            <span class="trust-shield">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+            <span>HIPAA BAA &amp; SOC 2 Type II Certified</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul class="footer-links-list">
+            <li><a href="features.html" class="footer-link">Calendar Sync</a></li>
+            <li><a href="features.html" class="footer-link">Automated SMS Reminders</a></li>
+            <li><a href="features.html" class="footer-link">Team Round-Robin</a></li>
+            <li><a href="pricing.html" class="footer-link">Pricing Plans</a></li>
+            <li><a href="dashboard/index.html" class="footer-link">Client Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html" class="footer-link">Home 1 (Automation)</a></li>
+            <li><a href="home-2.html" class="footer-link">Home 2 (Enterprise)</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact &amp; Support</a></li>
+            <li><a href="login.html" class="footer-link">Business Portal Login</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal &amp; Trust</h4>
+          <ul class="footer-links-list">
+            <li><a href="contact.html" class="footer-link">HIPAA BAA Policy</a></li>
+            <li><a href="contact.html" class="footer-link">SOC 2 Compliance</a></li>
+            <li><a href="contact.html" class="footer-link">Privacy Statement</a></li>
+            <li><a href="contact.html" class="footer-link">Terms of Service</a></li>
+            <li><a href="contact.html" class="footer-link">Security Whitepaper</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">&copy; 2026 SyncPoint SaaS Technologies Inc. All rights reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="about.html" class="footer-link">Company</a>
+          <a href="pricing.html" class="footer-link">Plans</a>
+          <a href="contact.html" class="footer-link status-pill">
+            <span class="status-indicator"></span>
+            Status: Operational
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="back-to-top" id="backToTopBtn" aria-label="Scroll back to top">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | SyncPoint Appointment Scheduling & Booking Software</title>
+  <meta name="description" content="Get in touch with SyncPoint product engineers, sales specialists, and enterprise support for appointment scheduling solutions.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
+      corePlugins: { preflight: false }
+    }
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===================================================================
+       PAGE PRELOADER
+       =================================================================== -->
+  <div class="page-preloader" id="pagePreloader" aria-hidden="true">
+    <div class="preloader-backdrop"></div>
+    <div class="preloader-card">
+      <div class="preloader-brand-icon">
+        <div class="preloader-orbit"></div>
+        <div class="preloader-orbit-glow"></div>
+        <div class="preloader-icon-core">
+          <svg viewBox="0 0 64 64" width="50" height="50" fill="none">
+            <defs>
+              <linearGradient id="preCalGradCnt" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00A3FF"/>
+                <stop offset="50%" stop-color="#2563EB"/>
+                <stop offset="100%" stop-color="#4F46E5"/>
+              </linearGradient>
+            </defs>
+            <rect x="8" y="10" width="46" height="42" rx="11" fill="url(#preCalGradCnt)"/>
+            <rect x="18" y="5" width="5" height="11" rx="2.5" fill="#00D2FF"/>
+            <rect x="39" y="5" width="5" height="11" rx="2.5" fill="#38BDF8"/>
+            <rect x="14" y="22" width="34" height="24" rx="5" fill="#FFFFFF" fill-opacity="0.96"/>
+            <rect x="19" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="29" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="39" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="19" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="29" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="39" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <circle cx="49" cy="46" r="10" fill="#2563EB" stroke="#FFFFFF" stroke-width="2.5"/>
+            <path d="M 44.5 46 L 47.5 49 L 53.5 43" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="preloader-brand-title">
+        <span class="preloader-text-sync">Sync</span><span class="preloader-text-point">Point</span>
+      </div>
+      <div class="preloader-progress-track">
+        <div class="preloader-progress-bar"></div>
+      </div>
+      <div class="preloader-caption">
+        <span>Synchronizing workspace</span>
+        <span class="preloader-dots"><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <!-- Global Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="SyncPoint Homepage">
+        <svg class="brand-logo-svg" viewBox="0 0 198 56" height="42" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SyncPoint">
+          <defs>
+            <linearGradient id="spCalGradCnt" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00A3FF" />
+              <stop offset="50%" stop-color="#2563EB" />
+              <stop offset="100%" stop-color="#4F46E5" />
+            </linearGradient>
+            <linearGradient id="spOrbitGradCnt" x1="0%" y1="50%" x2="100%" y2="50%">
+              <stop offset="0%" stop-color="#00D2FF" />
+              <stop offset="70%" stop-color="#2563EB" />
+              <stop offset="100%" stop-color="#8B5CF6" />
+            </linearGradient>
+            <filter id="spGlowCnt" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2563EB" flood-opacity="0.25"/>
+            </filter>
+          </defs>
+          <g class="sp-icon-group" filter="url(#spGlowCnt)">
+            <rect x="8" y="10" width="40" height="36" rx="9" fill="url(#spCalGradCnt)" />
+            <rect x="17" y="5" width="4" height="10" rx="2" fill="#00D2FF" />
+            <rect x="33" y="5" width="4" height="10" rx="2" fill="#38BDF8" />
+            <rect x="13.5" y="21" width="29" height="19" rx="4" fill="#FFFFFF" fill-opacity="0.96" />
+            <rect x="17.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="17.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <path d="M 4 33 C 4 48, 22 55, 45 47 C 52 44, 56 39, 57 34" stroke="url(#spOrbitGradCnt)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <circle cx="44" cy="40" r="8.5" fill="#0066FF" stroke="#FFFFFF" stroke-width="2.5" />
+            <path d="M 40.5 40 L 43 42.5 L 48 37.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <text x="64" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-sync">Sync</text>
+          <text x="126" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">Po</text>
+          <rect x="160.5" y="21" width="4.5" height="14" rx="1.5" class="sp-pin-fill" fill="#0066FF" />
+          <path d="M 162.75 9 C 160.2 9, 158.2 11, 158.2 13.5 C 158.2 16.5, 162.75 19.5, 162.75 19.5 C 162.75 19.5, 167.3 16.5, 167.3 13.5 C 167.3 11, 165.3 9, 162.75 9 Z" class="sp-pin-fill" fill="#0066FF" />
+          <circle cx="162.75" cy="13.2" r="1.6" fill="#FFFFFF" />
+          <text x="169" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">nt</text>
+          <text x="66" y="49" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="600" font-size="8.5" letter-spacing="0.1em" class="sp-tagline">Schedule <tspan fill="#0066FF">•</tspan> Manage <tspan fill="#0066FF">•</tspan> Grow</text>
+        </svg>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-links" aria-label="Main Navigation">
+        <!-- Home Dropdown -->
+        <div class="nav-dropdown" id="homeDropdown">
+          <button type="button" class="nav-link nav-dropdown-btn" id="homeDropdownBtn" aria-haspopup="true" aria-expanded="false">
+            <span>Home</span>
+            <svg class="dropdown-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav-dropdown-menu" id="homeDropdownMenu" role="menu">
+            <a href="index.html" class="dropdown-menu-item" role="menuitem">
+              <div class="dropdown-item-header">
+                <span class="dropdown-item-title">Home 1</span>
+                <span class="nav-badge-pill upcoming">Phase 1</span>
+              </div>
+              <span class="dropdown-item-sub">Appointment Automation (Phase 1)</span>
+            </a>
+            <a href="home-2.html" class="dropdown-menu-item" role="menuitem">
+              <div class="dropdown-item-header">
+                <span class="dropdown-item-title">Home 2</span>
+                <span class="nav-badge-pill current">Active</span>
+              </div>
+              <span class="dropdown-item-sub">Enterprise Multi-Location SaaS</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+        <a href="dashboard/index.html" class="nav-link">Dashboard</a>
+      </nav>
+
+      <!-- Action Utilities -->
+      <div class="nav-actions">
+        <!-- RTL Toggle -->
+        <button type="button" class="btn-icon rtl-toggle-btn" id="rtlToggleBtn" aria-label="Toggle text direction (LTR/RTL)" title="Switch text direction">
+          <span class="rtl-label" style="font-size:0.75rem; font-weight:700;">RTL</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button type="button" class="btn-icon theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme mode" title="Switch light or dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="icon-sun" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+        <a href="login.html" class="btn btn-secondary btn-sm d-none d-md-inline-flex">Log In</a>
+        <a href="register.html" class="btn btn-primary btn-sm d-none d-sm-inline-flex">Start Free Trial</a>
+
+        <!-- Hamburger Toggle -->
+        <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Open mobile navigation menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+      <!-- Mobile Drawer & Overlay -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile Navigation Drawer">
+    <div class="drawer-header">
+      <a href="index.html" class="brand-logo" aria-label="SyncPoint Homepage">
+        <svg class="brand-logo-svg" viewBox="0 0 198 56" height="38" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SyncPoint">
+          <defs>
+            <linearGradient id="spCalGradMob" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00A3FF" />
+              <stop offset="50%" stop-color="#2563EB" />
+              <stop offset="100%" stop-color="#4F46E5" />
+            </linearGradient>
+            <linearGradient id="spOrbitGradMob" x1="0%" y1="50%" x2="100%" y2="50%">
+              <stop offset="0%" stop-color="#00D2FF" />
+              <stop offset="70%" stop-color="#2563EB" />
+              <stop offset="100%" stop-color="#8B5CF6" />
+            </linearGradient>
+          </defs>
+          <g class="sp-icon-group">
+            <rect x="8" y="10" width="40" height="36" rx="9" fill="url(#spCalGradMob)" />
+            <rect x="17" y="5" width="4" height="10" rx="2" fill="#00D2FF" />
+            <rect x="33" y="5" width="4" height="10" rx="2" fill="#38BDF8" />
+            <rect x="13.5" y="21" width="29" height="19" rx="4" fill="#FFFFFF" fill-opacity="0.96" />
+            <rect x="17.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="17.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <path d="M 4 33 C 4 48, 22 55, 45 47 C 52 44, 56 39, 57 34" stroke="url(#spOrbitGradMob)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <circle cx="44" cy="40" r="8.5" fill="#0066FF" stroke="#FFFFFF" stroke-width="2.5" />
+            <path d="M 40.5 40 L 43 42.5 L 48 37.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <text x="64" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-sync">Sync</text>
+          <text x="126" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">Po</text>
+          <rect x="160.5" y="21" width="4.5" height="14" rx="1.5" class="sp-pin-fill" fill="#0066FF" />
+          <path d="M 162.75 9 C 160.2 9, 158.2 11, 158.2 13.5 C 158.2 16.5, 162.75 19.5, 162.75 19.5 C 162.75 19.5, 167.3 16.5, 167.3 13.5 C 167.3 11, 165.3 9, 162.75 9 Z" class="sp-pin-fill" fill="#0066FF" />
+          <circle cx="162.75" cy="13.2" r="1.6" fill="#FFFFFF" />
+          <text x="169" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">nt</text>
+          <text x="66" y="49" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="600" font-size="8.5" letter-spacing="0.1em" class="sp-tagline">Schedule <tspan fill="#0066FF">•</tspan> Manage <tspan fill="#0066FF">•</tspan> Grow</text>
+        </svg>
+      </a>
+      <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close navigation drawer">✕</button>
+    </div>
+
+    <div class="mobile-nav-links">
+      <!-- Collapsible Mobile Home Item -->
+      <div class="mobile-dropdown" id="mobileHomeDropdown">
+        <button type="button" class="mobile-nav-link mobile-dropdown-toggle" id="mobileHomeToggleBtn" aria-expanded="false">
+          <span>Home</span>
+          <svg class="dropdown-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="mobile-dropdown-menu">
+          <a href="index.html" class="mobile-dropdown-item">
+            <span>Home 1</span>
+            <span class="nav-badge-pill current">Phase 1</span>
+          </a>
+          <a href="home-2.html" class="mobile-dropdown-item">
+            <span>Home 2</span>
+            <span class="nav-badge-pill upcoming">Phase 2</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="features.html" class="mobile-nav-link">Features</a>
+      <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="contact.html" class="mobile-nav-link active">Contact</a>
+      <a href="dashboard/index.html" class="mobile-nav-link">Dashboard Portal</a>
+    </div>
+
+    <div style="margin-top:auto; display:flex; flex-direction:column; gap:0.75rem; padding-top:1.5rem; border-top:1px solid var(--border-subtle);">
+      <a href="login.html" class="btn btn-secondary w-100">Log In</a>
+      <a href="register.html" class="btn btn-primary w-100">Start Free Trial</a>
+    </div>
+  </aside>
+
+  <!-- ===================================================================
+       CONTACT — SECTION 1: CONTACT HERO (Exact Rendered Height via .page-hero)
+       =================================================================== -->
+  <section class="page-hero" id="contactHero">
+    <div class="page-hero-content">
+      <span class="badge-tag">We Are Here To Help</span>
+      <h1 class="page-hero-title">Get in Touch with Our Scheduling Experts</h1>
+      <p class="page-hero-desc">
+        Have questions about HIPAA BAA onboarding, custom staff integrations, or enterprise migrations? Send us a note and we will reply promptly.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       CONTACT — SECTION 2: CONTACT INFORMATION
+       =================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="row g-4 text-center">
+        <div class="col-md-4">
+          <div class="p-4 rounded-4 h-100 shadow-sm contact-card" style="background:var(--bg-card); border:1px solid var(--border-card);">
+            <div class="contact-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <h4 style="font-weight:700; margin-bottom:0.5rem;">Global Headquarters</h4>
+            <p style="color:var(--text-muted); font-size:0.95rem; margin:0;">
+              SyncPoint SaaS Technologies Inc.<br>
+              500 Howard Street, Suite 400<br>
+              San Francisco, CA 94105
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="p-4 rounded-4 h-100 shadow-sm contact-card" style="background:var(--bg-card); border:1px solid var(--border-card);">
+            <div class="contact-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <h4 style="font-weight:700; margin-bottom:0.5rem;">Direct Inquiries</h4>
+            <p style="color:var(--text-muted); font-size:0.95rem; margin:0;">
+              Sales: <a href="mailto:sales@syncpoint.io" style="color:var(--primary); font-weight:600;">sales@syncpoint.io</a><br>
+              Support: <a href="mailto:support@syncpoint.io" style="color:var(--primary); font-weight:600;">support@syncpoint.io</a><br>
+              Toll-free: +1 (800) 555-7962
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="p-4 rounded-4 h-100 shadow-sm contact-card" style="background:var(--bg-card); border:1px solid var(--border-card);">
+            <div class="contact-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h4 style="font-weight:700; margin-bottom:0.5rem;">Support Availability</h4>
+            <p style="color:var(--text-muted); font-size:0.95rem; margin:0;">
+              Monday – Friday: 24 Hours<br>
+              Saturday – Sunday: 8 AM – 8 PM EST<br>
+              Average Response: <strong>under 15 mins</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       CONTACT — SECTION 3: ORIGINAL HEADQUARTERS MAP
+       =================================================================== -->
+  <section class="section contact-map-section" id="headquartersMapSection" style="padding-top: 0;">
+    <div class="container">
+      <div class="section-header text-center mb-4">
+        <span class="badge-tag">Visit In Person</span>
+        <h2 class="section-title">Our Global Headquarters in San Francisco</h2>
+        <p class="section-subtitle">Located in the heart of SoMa's innovation district, steps from the Transbay Transit Center.</p>
+      </div>
+
+      <div class="contact-map-wrapper">
+        <iframe
+          class="contact-map-iframe"
+          title="SyncPoint Global Headquarters Map"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.086387063628!2d-122.39904762366114!3d37.787948311210815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085807cc90c37cb%3A0x8f780824bfe4c4a4!2s500%20Howard%20St%2C%20San%20Francisco%2C%20CA%2094105!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus"
+          loading="lazy"
+          allowfullscreen=""
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+
+        <!-- Floating Glassmorphic Headquarters Info Card -->
+        <div class="map-floating-card">
+          <div class="map-floating-badge">
+            <span class="pulse-indicator"></span>
+            <span>HQ Campus</span>
+          </div>
+          <div class="map-floating-title">SyncPoint SaaS Technologies Inc.</div>
+          <div class="map-floating-addr">
+            500 Howard Street, Suite 400<br>
+            San Francisco, CA 94105, USA
+          </div>
+          <a href="https://maps.google.com/?q=500+Howard+St+Suite+400+San+Francisco+CA+94105" target="_blank" rel="noopener noreferrer" class="map-directions-link">
+            <span>Get Directions in Google Maps</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       CONTACT — SECTION 4: CONTACT FORM (Validation & Feedback)
+       =================================================================== -->
+  <section class="section section-subtle" id="contactFormSection">
+    <div class="container">
+      <div class="section-header text-center" style="max-width: 580px; margin: 0 auto 2.25rem auto;">
+        <span class="badge-tag">Direct Communication</span>
+        <h2 class="section-title">Send a Direct Message</h2>
+        <p class="section-subtitle">Fill in the fields below and our appointment engineering team will reach out directly.</p>
+      </div>
+
+      <div class="contact-form-card">
+        <div id="contactFeedback" class="alert d-none" role="alert"></div>
+
+        <form id="contactForm" novalidate>
+          <div class="row g-3">
+            <div class="col-sm-6 form-group">
+              <label for="contactName" class="form-label" style="font-weight: 600; font-size: 0.9rem;">Full Name *</label>
+              <input type="text" class="form-control" id="contactName" placeholder="Dr. Sarah Mitchell" required>
+              <div class="field-error text-danger small mt-1" style="display:none;">Full name is required.</div>
+            </div>
+
+            <div class="col-sm-6 form-group">
+              <label for="contactEmail" class="form-label" style="font-weight: 600; font-size: 0.9rem;">Business Email *</label>
+              <input type="email" class="form-control" id="contactEmail" placeholder="s.mitchell@clinic.com" required>
+              <div class="field-error text-danger small mt-1" style="display:none;">Valid email address is required.</div>
+            </div>
+
+            <div class="col-sm-6 form-group">
+              <label for="contactBusiness" class="form-label" style="font-weight: 600; font-size: 0.9rem;">Practice / Business Name *</label>
+              <input type="text" class="form-control" id="contactBusiness" placeholder="Apex Medical Health" required>
+              <div class="field-error text-danger small mt-1" style="display:none;">Business name is required.</div>
+            </div>
+
+            <div class="col-sm-6 form-group">
+              <label for="contactSubject" class="form-label" style="font-weight: 600; font-size: 0.9rem;">Subject *</label>
+              <select class="form-control" id="contactSubject" required>
+                <option value="">Select an inquiry category</option>
+                <option value="enterprise">Enterprise Multi-Location Scheduling</option>
+                <option value="hipaa">HIPAA Compliance & BAA Agreement</option>
+                <option value="migration">Migration from Acuity / Calendly</option>
+                <option value="billing">Billing & Plan Inquiry</option>
+                <option value="partnership">Custom Agency Partnership</option>
+              </select>
+              <div class="field-error text-danger small mt-1" style="display:none;">Please select a subject.</div>
+            </div>
+
+            <div class="col-12 form-group">
+              <label for="contactMessage" class="form-label" style="font-weight: 600; font-size: 0.9rem;">Your Message *</label>
+              <textarea class="form-control" id="contactMessage" rows="4" placeholder="Tell us about your team size, current appointment bottlenecks, and desired integration goals..." required></textarea>
+              <div class="field-error text-danger small mt-1" style="display:none;">Message cannot be empty.</div>
+            </div>
+
+            <div class="col-12 mt-3">
+              <button type="submit" class="btn btn-primary btn-lg w-100" style="padding: 0.85rem 1.5rem; font-weight: 700; border-radius: 10px;">Send Inquiry Message ➔</button>
+            </div>
+
+            <div class="col-12 text-center mt-2">
+              <span style="font-size: 0.8rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 0.35rem;">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                Your privacy is guaranteed. Response within 15 minutes.
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       CONTACT — SECTION 5: SPECIALIZED SUPPORT & ESCALATION CHANNELS (New Section)
+       =================================================================== -->
+  <section class="section" id="supportTiersSection">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="badge-tag">Dedicated Routing</span>
+        <h2 class="section-title">Specialized Support &amp; Escalation Hubs</h2>
+        <p class="section-subtitle">Get direct access to the right engineering, compliance, or onboarding team without queue delays.</p>
+      </div>
+
+      <div class="support-tiers-grid">
+        <!-- Tier 1: Technical & APIs -->
+        <div class="support-tier-card">
+          <div class="support-tier-header">
+            <div class="support-tier-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </div>
+            <span class="support-tier-sla">SLA: &lt; 15 Mins</span>
+          </div>
+          <h3 class="support-tier-title">API &amp; Webhook Engineers</h3>
+          <p class="support-tier-desc">Direct technical assistance for REST API rate limits, OAuth token refresh, and custom webhooks integration.</p>
+          <ul class="support-tier-features">
+            <li class="support-tier-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Webhook payload debugging</li>
+            <li class="support-tier-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Zapier / Make.com app workflows</li>
+            <li class="support-tier-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Custom sandbox environment setup</li>
+          </ul>
+          <a href="mailto:developers@syncpoint.io" class="btn btn-outline support-tier-btn">Contact Developer Support</a>
+        </div>
+
+        <!-- Tier 2: Enterprise Procurement -->
+        <div class="support-tier-card">
+          <div class="support-tier-header">
+            <div class="support-tier-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <span class="support-tier-sla">Priority Lead Desk</span>
+          </div>
+          <h3 class="support-tier-title">HIPAA &amp; Enterprise Procurement</h3>
+          <p class="support-tier-desc">Dedicated account managers for Business Associate Agreements (BAA), custom billing, and SOC 2 audits.</p>
+          <ul class="support-tier-features">
+            <li class="support-tier-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Signed HIPAA BAA within 24h</li>
+            <li class="support-tier-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Vendor security questionnaire reviews</li>
+            <li class="support-tier-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Invoiced wire transfer / ACH terms</li>
+          </ul>
+          <a href="mailto:enterprise@syncpoint.io" class="btn btn-primary support-tier-btn">Request Enterprise BAA</a>
+        </div>
+
+        <!-- Tier 3: Practice Migration -->
+        <div class="support-tier-card">
+          <div class="support-tier-header">
+            <div class="support-tier-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <span class="support-tier-sla">White-Glove</span>
+          </div>
+          <h3 class="support-tier-title">Practice Migration Concierge</h3>
+          <p class="support-tier-desc">Assisted 1-on-1 migration from Calendly, Acuity, or Mindbody without losing scheduled client appointments.</p>
+          <ul class="support-tier-features">
+            <li class="support-tier-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Client history &amp; contact transfer</li>
+            <li class="support-tier-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Multi-staff roster configuration</li>
+            <li class="support-tier-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 45-minute live team onboarding</li>
+          </ul>
+          <a href="mailto:concierge@syncpoint.io" class="btn btn-outline support-tier-btn">Book Concierge Session</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       CONTACT — SECTION 6: FREQUENTLY ASKED QUESTIONS
+       =================================================================== -->
+  <section class="section section-subtle">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag">Help Center</span>
+        <h2 class="section-title">Support FAQs</h2>
+        <p class="section-subtitle">Quick answers to standard operational questions.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button type="button" class="faq-question">
+            <span>How fast can our business migrate from Calendly or Acuity?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            Most teams migrate in under 15 minutes. Our 1-click import pulls existing client records, appointment types, and staff availability automatically.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Can we embed SyncPoint into our existing WordPress, Webflow, or custom site?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            Yes! SyncPoint provides responsive embed codes (iframe, pop-up widget, or custom inline banner) compatible with all modern website builders and custom HTML.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Do you offer custom training or dedicated onboarding for staff?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            Yes. Business and Enterprise tier subscribers receive a live 45-minute onboarding session for all team managers and administrative staff.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       CONTACT — SECTION 7: FINAL CTA AND FOOTER
+       =================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner-wrapper">
+        <div class="cta-banner-container text-center">
+          <div>
+            <h2 class="cta-title">Ready to Automate Your Appointment Operations?</h2>
+            <p class="cta-subtitle">Start your 14-day free trial now or test our interactive business client portal.</p>
+            <div class="d-flex gap-3 flex-wrap justify-content-center">
+              <a href="register.html" class="btn btn-lg" style="background:#fff; color:#1e1b4b; font-weight:700;">Start Free Trial</a>
+              <a href="dashboard/index.html" class="btn btn-lg btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.4);">Launch Dashboard Demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <svg class="brand-logo-svg" viewBox="0 0 198 56" height="42" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SyncPoint">
+              <g class="sp-icon-group" filter="url(#spGlowCnt)">
+            <rect x="8" y="10" width="40" height="36" rx="9" fill="url(#spCalGradCnt)" />
+            <rect x="17" y="5" width="4" height="10" rx="2" fill="#00D2FF" />
+            <rect x="33" y="5" width="4" height="10" rx="2" fill="#38BDF8" />
+            <rect x="13.5" y="21" width="29" height="19" rx="4" fill="#FFFFFF" fill-opacity="0.96" />
+            <rect x="17.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="17.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <path d="M 4 33 C 4 48, 22 55, 45 47 C 52 44, 56 39, 57 34" stroke="url(#spOrbitGradCnt)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <circle cx="44" cy="40" r="8.5" fill="#0066FF" stroke="#FFFFFF" stroke-width="2.5" />
+            <path d="M 40.5 40 L 43 42.5 L 48 37.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <text x="64" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-sync">Sync</text>
+          <text x="126" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">Po</text>
+          <rect x="160.5" y="21" width="4.5" height="14" rx="1.5" class="sp-pin-fill" fill="#0066FF" />
+          <path d="M 162.75 9 C 160.2 9, 158.2 11, 158.2 13.5 C 158.2 16.5, 162.75 19.5, 162.75 19.5 C 162.75 19.5, 167.3 16.5, 167.3 13.5 C 167.3 11, 165.3 9, 162.75 9 Z" class="sp-pin-fill" fill="#0066FF" />
+          <circle cx="162.75" cy="13.2" r="1.6" fill="#FFFFFF" />
+          <text x="169" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">nt</text>
+          <text x="66" y="49" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="600" font-size="8.5" letter-spacing="0.1em" class="sp-tagline">Schedule <tspan fill="#0066FF">•</tspan> Manage <tspan fill="#0066FF">•</tspan> Grow</text>
+            </svg>
+          </a>
+          <p>The enterprise-grade appointment scheduling automation SaaS built for clinics, advisors, studios, and service teams worldwide.</p>
+          <div class="footer-socials" aria-label="Social media links">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Follow SyncPoint on X (Twitter)" title="X (Twitter)">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 24.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Connect with SyncPoint on LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+              </svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="SyncPoint on GitHub" title="GitHub">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+              </svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="SyncPoint on YouTube" title="YouTube">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+          </div>
+          <div class="footer-trust-badge">
+            <span class="trust-shield">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+            <span>HIPAA BAA &amp; SOC 2 Type II Certified</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul class="footer-links-list">
+            <li><a href="features.html" class="footer-link">Calendar Sync</a></li>
+            <li><a href="features.html" class="footer-link">Automated SMS Reminders</a></li>
+            <li><a href="features.html" class="footer-link">Team Round-Robin</a></li>
+            <li><a href="pricing.html" class="footer-link">Pricing Plans</a></li>
+            <li><a href="dashboard/index.html" class="footer-link">Client Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html" class="footer-link">Home 1 (Automation)</a></li>
+            <li><a href="home-2.html" class="footer-link">Home 2 (Enterprise)</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact &amp; Support</a></li>
+            <li><a href="login.html" class="footer-link">Business Portal Login</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal &amp; Trust</h4>
+          <ul class="footer-links-list">
+            <li><a href="contact.html" class="footer-link">HIPAA BAA Policy</a></li>
+            <li><a href="contact.html" class="footer-link">SOC 2 Compliance</a></li>
+            <li><a href="contact.html" class="footer-link">Privacy Statement</a></li>
+            <li><a href="contact.html" class="footer-link">Terms of Service</a></li>
+            <li><a href="contact.html" class="footer-link">Security Whitepaper</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">&copy; 2026 SyncPoint SaaS Technologies Inc. All rights reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="about.html" class="footer-link">Company</a>
+          <a href="pricing.html" class="footer-link">Plans</a>
+          <a href="contact.html" class="footer-link status-pill">
+            <span class="status-indicator"></span>
+            Status: Operational
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="back-to-top" id="backToTopBtn" aria-label="Scroll to top"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/forms.js"></script>
+</body>
+</html>

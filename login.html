@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Client Login | SyncPoint SaaS</title>
+  <meta name="description" content="Sign in to your SyncPoint appointment scheduling dashboard and provider management portal.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+
+  <!-- Google Fonts: Max 2 Font Families -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
+      corePlugins: { preflight: false }
+    }
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===================================================================
+       PAGE PRELOADER
+       =================================================================== -->
+  <div class="page-preloader" id="pagePreloader" aria-hidden="true">
+    <div class="preloader-backdrop"></div>
+    <div class="preloader-card">
+      <div class="preloader-brand-icon">
+        <div class="preloader-orbit"></div>
+        <div class="preloader-orbit-glow"></div>
+        <div class="preloader-icon-core">
+          <svg viewBox="0 0 64 64" width="50" height="50" fill="none">
+            <defs>
+              <linearGradient id="preCalGradLog" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00A3FF"/>
+                <stop offset="50%" stop-color="#2563EB"/>
+                <stop offset="100%" stop-color="#4F46E5"/>
+              </linearGradient>
+            </defs>
+            <rect x="8" y="10" width="46" height="42" rx="11" fill="url(#preCalGradLog)"/>
+            <rect x="18" y="5" width="5" height="11" rx="2.5" fill="#00D2FF"/>
+            <rect x="39" y="5" width="5" height="11" rx="2.5" fill="#38BDF8"/>
+            <rect x="14" y="22" width="34" height="24" rx="5" fill="#FFFFFF" fill-opacity="0.96"/>
+            <rect x="19" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="29" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="39" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="19" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="29" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="39" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <circle cx="49" cy="46" r="10" fill="#2563EB" stroke="#FFFFFF" stroke-width="2.5"/>
+            <path d="M 44.5 46 L 47.5 49 L 53.5 43" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="preloader-brand-title">
+        <span class="preloader-text-sync">Sync</span><span class="preloader-text-point">Point</span>
+      </div>
+      <div class="preloader-progress-track">
+        <div class="preloader-progress-bar"></div>
+      </div>
+      <div class="preloader-caption">
+        <span>Synchronizing workspace</span>
+        <span class="preloader-dots"><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       SPLIT-SCREEN AUTHENTICATION (Reference Image 5 Design)
+       =================================================================== -->
+  <div class="auth-split-layout">
+    
+    <!-- Left Pane: Visual Showcase & Brand Narrative -->
+    <div class="auth-visual-pane" style="background-image: url('assets/images/industry-consulting.jpg');">
+      <div class="auth-visual-overlay"></div>
+      <div class="auth-visual-content">
+        <h1 class="auth-visual-title">Welcome Back to Your Practice Workspace</h1>
+        <p class="auth-visual-desc">Access real-time appointment bookings, manage multi-provider calendars, and stop no-shows with automated WhatsApp &amp; SMS reminders.</p>
+
+        <div class="auth-trust-strip">
+          <span>✓ 25,000+ Active Practices</span>
+          <span>✓ Google &amp; Outlook 2-Way Sync</span>
+          <span>✓ HIPAA &amp; SOC 2 Certified</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Pane: Centered Modern Auth Form -->
+    <div class="auth-form-pane">
+      
+      <!-- Top Utility Navigation -->
+      <div class="auth-top-nav" style="justify-content: flex-end;">
+        <div class="auth-top-actions">
+          <button type="button" class="btn-icon rtl-toggle-btn" id="rtlToggleBtn" aria-label="Toggle text direction" title="Switch text direction">
+            <span class="rtl-label" style="font-size:0.75rem; font-weight:700;">RTL</span>
+          </button>
+
+          <button type="button" class="btn-icon theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme mode" title="Switch light or dark mode">
+            <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg class="icon-sun" style="display:none;" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Auth Card Container -->
+      <div class="auth-card">
+        <div class="auth-header">
+          <a href="index.html" class="brand-logo auth-card-logo" aria-label="SyncPoint Homepage">
+            <svg class="brand-logo-svg" viewBox="0 0 198 56" height="44" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SyncPoint">
+              <defs>
+                <linearGradient id="spCalGradFormLog" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00C2FF" />
+                  <stop offset="50%" stop-color="#0066FF" />
+                  <stop offset="100%" stop-color="#3B82F6" />
+                </linearGradient>
+                <linearGradient id="spOrbitGradFormLog" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00D2FF" />
+                  <stop offset="50%" stop-color="#0066FF" />
+                  <stop offset="100%" stop-color="#8B5CF6" />
+                </linearGradient>
+                <filter id="spGlowFormLog" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#0066FF" flood-opacity="0.3"/>
+                </filter>
+              </defs>
+              <g class="sp-icon-group" filter="url(#spGlowFormLog)">
+                <rect x="8" y="10" width="40" height="36" rx="9" fill="url(#spCalGradFormLog)" />
+                <rect x="17" y="5" width="4" height="10" rx="2" fill="#00D2FF" />
+                <rect x="33" y="5" width="4" height="10" rx="2" fill="#38BDF8" />
+                <rect x="13.5" y="21" width="29" height="19" rx="4" fill="#FFFFFF" fill-opacity="0.96" />
+                <rect x="17.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+                <rect x="25.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+                <rect x="33.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+                <rect x="17.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+                <rect x="25.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+                <rect x="33.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+                <path d="M 4 33 C 4 48, 22 55, 45 47 C 52 44, 56 39, 57 34" stroke="url(#spOrbitGradFormLog)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+                <circle cx="44" cy="40" r="8.5" fill="#0066FF" stroke="#FFFFFF" stroke-width="2.5" />
+                <path d="M 40.5 40 L 43 42.5 L 48 37.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+              </g>
+              <text x="64" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-sync">Sync</text>
+              <text x="126" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">Po</text>
+              <rect x="160.5" y="21" width="4.5" height="14" rx="1.5" class="sp-pin-fill" fill="#0066FF" />
+              <path d="M 162.75 9 C 160.2 9, 158.2 11, 158.2 13.5 C 158.2 16.5, 162.75 19.5, 162.75 19.5 C 162.75 19.5, 167.3 16.5, 167.3 13.5 C 167.3 11, 165.3 9, 162.75 9 Z" class="sp-pin-fill" fill="#0066FF" />
+              <circle cx="162.75" cy="13.2" r="1.6" fill="#FFFFFF" />
+              <text x="169" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">nt</text>
+              <text x="66" y="49" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="600" font-size="8.5" letter-spacing="0.1em" class="sp-tagline">Schedule <tspan fill="#0066FF">•</tspan> Manage <tspan fill="#0066FF">•</tspan> Grow</text>
+            </svg>
+          </a>
+          <h2 class="auth-title">Business Portal Login</h2>
+          <p class="auth-subtitle">Sign in to manage appointments, staff rosters &amp; booking telemetry</p>
+        </div>
+
+        <!-- Demo Mode Badge -->
+        <div class="alert alert-info py-2 px-3 small mb-3" style="font-size:0.8rem; border-radius:var(--radius-md);">
+          <strong>Demo Access:</strong> Click <em>"Log In to Dashboard"</em> with pre-filled credentials.
+        </div>
+
+        <div id="loginFeedback" class="alert d-none py-2 px-3 small mb-3" role="alert"></div>
+
+        <form id="loginForm" novalidate>
+          
+          <!-- Email Input -->
+          <div class="mb-3">
+            <label for="loginEmail" class="form-label" style="font-size:0.85rem; font-weight:700;">Email Address</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </span>
+              <input type="email" class="auth-input" id="loginEmail" value="dr.sarah@apexclinic.com" required placeholder="name@company.com">
+            </div>
+          </div>
+
+          <!-- Password Input -->
+          <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <label for="loginPassword" class="form-label mb-0" style="font-size:0.85rem; font-weight:700;">Password</label>
+              <a href="#" class="small text-decoration-none" style="color:var(--primary); font-size:0.8rem; font-weight:600;" onclick="alert('Demo reset instructions sent to registered email.'); return false;">Forgot Password?</a>
+            </div>
+            <div class="auth-input-wrapper password-wrapper">
+              <span class="auth-input-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </span>
+              <input type="password" class="auth-input pe-5" id="loginPassword" value="SyncPoint2026!" required placeholder="••••••••••••">
+              <button type="button" class="password-toggle-btn" aria-label="Toggle password visibility">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Remember Me Checkbox -->
+          <div class="mb-4 form-check">
+            <input type="checkbox" class="form-check-input" id="rememberMe" checked>
+            <label class="form-check-label small text-muted" for="rememberMe" style="font-size:0.85rem;">Remember my session</label>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary btn-lg w-100 d-flex align-items-center justify-content-center gap-2 mb-3" style="height:48px; font-weight:700;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+              <polyline points="10 17 15 12 10 7"></polyline>
+              <line x1="15" y1="12" x2="3" y2="12"></line>
+            </svg>
+            <span>Log In to Dashboard</span>
+          </button>
+
+          <!-- Divider -->
+          <div class="auth-divider">
+            <span>or sign in with</span>
+          </div>
+
+          <!-- Social Buttons -->
+          <div class="auth-social-row">
+            <button type="button" class="auth-social-btn" onclick="alert('Google Workspace SSO initialized for demo account.');">
+              <svg viewBox="0 0 24 24" width="18" height="18">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+              </svg>
+              <span>Google</span>
+            </button>
+            <button type="button" class="auth-social-btn" onclick="alert('Apple ID Business Sign-In initialized for demo account.');">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.67-.82 1.12-1.95.99-3.08-1 .04-2.18.66-2.87 1.48-.6.71-1.13 1.87-.99 2.97 1.12.09 2.22-.56 2.87-1.37z"/>
+              </svg>
+              <span>Apple</span>
+            </button>
+          </div>
+
+          <!-- Bottom Switch Link -->
+          <div class="text-center small text-muted">
+            Don't have a business account? <a href="register.html" style="color:var(--primary); font-weight:700;">Start Free 14-Day Trial</a>
+          </div>
+        </form>
+      </div>
+
+      <!-- Auth Footer -->
+      <div class="auth-footer-copy">
+        &copy; 2026 SyncPoint SaaS Technologies Inc. • HIPAA BAA &amp; SOC 2 Certified Environment
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/forms.js"></script>
+</body>
+</html>

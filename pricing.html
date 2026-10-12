@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Plans | SyncPoint Appointment Scheduling & Booking Software</title>
+  <meta name="description" content="Transparent, predictable pricing for appointment scheduling. Choose Starter, Professional, or Business with a 14-day risk-free trial.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
+      corePlugins: { preflight: false }
+    }
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===================================================================
+       PAGE PRELOADER
+       =================================================================== -->
+  <div class="page-preloader" id="pagePreloader" aria-hidden="true">
+    <div class="preloader-backdrop"></div>
+    <div class="preloader-card">
+      <div class="preloader-brand-icon">
+        <div class="preloader-orbit"></div>
+        <div class="preloader-orbit-glow"></div>
+        <div class="preloader-icon-core">
+          <svg viewBox="0 0 64 64" width="50" height="50" fill="none">
+            <defs>
+              <linearGradient id="preCalGradPrice" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00A3FF"/>
+                <stop offset="50%" stop-color="#2563EB"/>
+                <stop offset="100%" stop-color="#4F46E5"/>
+              </linearGradient>
+            </defs>
+            <rect x="8" y="10" width="46" height="42" rx="11" fill="url(#preCalGradPrice)"/>
+            <rect x="18" y="5" width="5" height="11" rx="2.5" fill="#00D2FF"/>
+            <rect x="39" y="5" width="5" height="11" rx="2.5" fill="#38BDF8"/>
+            <rect x="14" y="22" width="34" height="24" rx="5" fill="#FFFFFF" fill-opacity="0.96"/>
+            <rect x="19" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="29" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="39" y="27" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="19" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="29" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <rect x="39" y="35" width="5" height="5" rx="1.5" fill="#60A5FA"/>
+            <circle cx="49" cy="46" r="10" fill="#2563EB" stroke="#FFFFFF" stroke-width="2.5"/>
+            <path d="M 44.5 46 L 47.5 49 L 53.5 43" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="preloader-brand-title">
+        <span class="preloader-text-sync">Sync</span><span class="preloader-text-point">Point</span>
+      </div>
+      <div class="preloader-progress-track">
+        <div class="preloader-progress-bar"></div>
+      </div>
+      <div class="preloader-caption">
+        <span>Synchronizing workspace</span>
+        <span class="preloader-dots"><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="SyncPoint Homepage">
+        <svg class="brand-logo-svg" viewBox="0 0 198 56" height="42" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SyncPoint">
+          <defs>
+            <linearGradient id="spCalGradPrice" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00A3FF" />
+              <stop offset="50%" stop-color="#2563EB" />
+              <stop offset="100%" stop-color="#4F46E5" />
+            </linearGradient>
+            <linearGradient id="spOrbitGradPrice" x1="0%" y1="50%" x2="100%" y2="50%">
+              <stop offset="0%" stop-color="#00D2FF" />
+              <stop offset="70%" stop-color="#2563EB" />
+              <stop offset="100%" stop-color="#8B5CF6" />
+            </linearGradient>
+            <filter id="spGlowPrice" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2563EB" flood-opacity="0.25"/>
+            </filter>
+          </defs>
+          <g class="sp-icon-group" filter="url(#spGlowPrice)">
+            <rect x="8" y="10" width="40" height="36" rx="9" fill="url(#spCalGradPrice)" />
+            <rect x="17" y="5" width="4" height="10" rx="2" fill="#00D2FF" />
+            <rect x="33" y="5" width="4" height="10" rx="2" fill="#38BDF8" />
+            <rect x="13.5" y="21" width="29" height="19" rx="4" fill="#FFFFFF" fill-opacity="0.96" />
+            <rect x="17.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="17.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <path d="M 4 33 C 4 48, 22 55, 45 47 C 52 44, 56 39, 57 34" stroke="url(#spOrbitGradPrice)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <circle cx="44" cy="40" r="8.5" fill="#0066FF" stroke="#FFFFFF" stroke-width="2.5" />
+            <path d="M 40.5 40 L 43 42.5 L 48 37.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <text x="64" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-sync">Sync</text>
+          <text x="126" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">Po</text>
+          <rect x="160.5" y="21" width="4.5" height="14" rx="1.5" class="sp-pin-fill" fill="#0066FF" />
+          <path d="M 162.75 9 C 160.2 9, 158.2 11, 158.2 13.5 C 158.2 16.5, 162.75 19.5, 162.75 19.5 C 162.75 19.5, 167.3 16.5, 167.3 13.5 C 167.3 11, 165.3 9, 162.75 9 Z" class="sp-pin-fill" fill="#0066FF" />
+          <circle cx="162.75" cy="13.2" r="1.6" fill="#FFFFFF" />
+          <text x="169" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">nt</text>
+          <text x="66" y="49" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="600" font-size="8.5" letter-spacing="0.1em" class="sp-tagline">Schedule <tspan fill="#0066FF">•</tspan> Manage <tspan fill="#0066FF">•</tspan> Grow</text>
+        </svg>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-links" aria-label="Main Navigation">
+        <!-- Home Dropdown -->
+        <div class="nav-dropdown" id="homeDropdown">
+          <button type="button" class="nav-link nav-dropdown-btn" id="homeDropdownBtn" aria-haspopup="true" aria-expanded="false">
+            <span>Home</span>
+            <svg class="dropdown-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav-dropdown-menu" id="homeDropdownMenu" role="menu">
+            <a href="index.html" class="dropdown-menu-item" role="menuitem">
+              <div class="dropdown-item-header">
+                <span class="dropdown-item-title">Home 1</span>
+                <span class="nav-badge-pill upcoming">Phase 1</span>
+              </div>
+              <span class="dropdown-item-sub">Appointment Automation (Phase 1)</span>
+            </a>
+            <a href="home-2.html" class="dropdown-menu-item" role="menuitem">
+              <div class="dropdown-item-header">
+                <span class="dropdown-item-title">Home 2</span>
+                <span class="nav-badge-pill current">Active</span>
+              </div>
+              <span class="dropdown-item-sub">Enterprise Multi-Location SaaS</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="pricing.html" class="nav-link active">Pricing</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="dashboard/index.html" class="nav-link">Dashboard</a>
+      </nav>
+
+      <!-- Action Utilities -->
+      <div class="nav-actions">
+        <!-- RTL Toggle -->
+        <button type="button" class="btn-icon rtl-toggle-btn" id="rtlToggleBtn" aria-label="Toggle text direction (LTR/RTL)" title="Switch text direction">
+          <span class="rtl-label" style="font-size:0.75rem; font-weight:700;">RTL</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button type="button" class="btn-icon theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme mode" title="Switch light or dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="icon-sun" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+        <a href="login.html" class="btn btn-secondary btn-sm d-none d-md-inline-flex">Log In</a>
+        <a href="register.html" class="btn btn-primary btn-sm d-none d-sm-inline-flex">Start Free Trial</a>
+
+        <!-- Hamburger Toggle -->
+        <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Open mobile navigation menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+      <!-- Mobile Drawer & Overlay -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile Navigation Drawer">
+    <div class="drawer-header">
+      <a href="index.html" class="brand-logo" aria-label="SyncPoint Homepage">
+        <svg class="brand-logo-svg" viewBox="0 0 198 56" height="38" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SyncPoint">
+          <defs>
+            <linearGradient id="spCalGradMob" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00A3FF" />
+              <stop offset="50%" stop-color="#2563EB" />
+              <stop offset="100%" stop-color="#4F46E5" />
+            </linearGradient>
+            <linearGradient id="spOrbitGradMob" x1="0%" y1="50%" x2="100%" y2="50%">
+              <stop offset="0%" stop-color="#00D2FF" />
+              <stop offset="70%" stop-color="#2563EB" />
+              <stop offset="100%" stop-color="#8B5CF6" />
+            </linearGradient>
+          </defs>
+          <g class="sp-icon-group">
+            <rect x="8" y="10" width="40" height="36" rx="9" fill="url(#spCalGradMob)" />
+            <rect x="17" y="5" width="4" height="10" rx="2" fill="#00D2FF" />
+            <rect x="33" y="5" width="4" height="10" rx="2" fill="#38BDF8" />
+            <rect x="13.5" y="21" width="29" height="19" rx="4" fill="#FFFFFF" fill-opacity="0.96" />
+            <rect x="17.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="17.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <path d="M 4 33 C 4 48, 22 55, 45 47 C 52 44, 56 39, 57 34" stroke="url(#spOrbitGradMob)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <circle cx="44" cy="40" r="8.5" fill="#0066FF" stroke="#FFFFFF" stroke-width="2.5" />
+            <path d="M 40.5 40 L 43 42.5 L 48 37.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <text x="64" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-sync">Sync</text>
+          <text x="126" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">Po</text>
+          <rect x="160.5" y="21" width="4.5" height="14" rx="1.5" class="sp-pin-fill" fill="#0066FF" />
+          <path d="M 162.75 9 C 160.2 9, 158.2 11, 158.2 13.5 C 158.2 16.5, 162.75 19.5, 162.75 19.5 C 162.75 19.5, 167.3 16.5, 167.3 13.5 C 167.3 11, 165.3 9, 162.75 9 Z" class="sp-pin-fill" fill="#0066FF" />
+          <circle cx="162.75" cy="13.2" r="1.6" fill="#FFFFFF" />
+          <text x="169" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">nt</text>
+          <text x="66" y="49" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="600" font-size="8.5" letter-spacing="0.1em" class="sp-tagline">Schedule <tspan fill="#0066FF">•</tspan> Manage <tspan fill="#0066FF">•</tspan> Grow</text>
+        </svg>
+      </a>
+      <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close navigation drawer">✕</button>
+    </div>
+
+    <div class="mobile-nav-links">
+      <!-- Collapsible Mobile Home Item -->
+      <div class="mobile-dropdown" id="mobileHomeDropdown">
+        <button type="button" class="mobile-nav-link mobile-dropdown-toggle" id="mobileHomeToggleBtn" aria-expanded="false">
+          <span>Home</span>
+          <svg class="dropdown-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="mobile-dropdown-menu">
+          <a href="index.html" class="mobile-dropdown-item">
+            <span>Home 1</span>
+            <span class="nav-badge-pill current">Phase 1</span>
+          </a>
+          <a href="home-2.html" class="mobile-dropdown-item">
+            <span>Home 2</span>
+            <span class="nav-badge-pill upcoming">Phase 2</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="features.html" class="mobile-nav-link">Features</a>
+      <a href="pricing.html" class="mobile-nav-link active">Pricing</a>
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+      <a href="dashboard/index.html" class="mobile-nav-link">Dashboard Portal</a>
+    </div>
+
+    <div style="margin-top:auto; display:flex; flex-direction:column; gap:0.75rem; padding-top:1.5rem; border-top:1px solid var(--border-subtle);">
+      <a href="login.html" class="btn btn-secondary w-100">Log In</a>
+      <a href="register.html" class="btn btn-primary w-100">Start Free Trial</a>
+    </div>
+  </aside>
+
+  <!-- ===================================================================
+       PRICING — SECTION 1: PRICING HERO (Exact Rendered Height via .page-hero)
+       =================================================================== -->
+  <section class="page-hero" id="pricingHero">
+    <div class="page-hero-content">
+      <span class="badge-tag">Simple & Transparent</span>
+      <h1 class="page-hero-title">Predictable Pricing for Growing Teams</h1>
+      <p class="page-hero-desc">
+        Pick the plan that matches your practice or agency size. All plans include 2-way calendar sync, automated reminders, and zero booking commissions.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       PRICING — SECTION 2: THREE PRICING PLAN CARDS
+       =================================================================== -->
+  <section class="section">
+    <div class="container">
+      <!-- 3 Plan Cards (iPad: Exactly 2 cards per row on tablet portrait) -->
+      <div class="pricing-grid">
+        <!-- Starter Plan -->
+        <div class="pricing-card">
+          <div class="pricing-plan-name">Starter</div>
+          <div class="pricing-plan-desc">For solo consultants, tutors, and private therapists establishing online booking.</div>
+          <div class="pricing-price-box">
+            <span class="pricing-currency">$</span>
+            <span class="pricing-amount">24</span>
+            <span class="pricing-period">/ month billed yearly</span>
+          </div>
+          <div class="pricing-feature-list">
+            <div class="pricing-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 1 Provider calendar seat</div>
+            <div class="pricing-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Unlimited client bookings</div>
+            <div class="pricing-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 2-Way Google & Outlook sync</div>
+            <div class="pricing-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Automated email reminders</div>
+            <div class="pricing-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Custom intake questions</div>
+          </div>
+          <a href="register.html" class="btn btn-secondary w-100">Start 14-Day Free Trial</a>
+        </div>
+
+        <!-- Professional Plan (Popular) -->
+        <div class="pricing-card popular">
+          <span class="pricing-popular-badge">Most Popular</span>
+          <div class="pricing-plan-name">Professional</div>
+          <div class="pricing-plan-desc">For established practices, salons, and consultancies seeking zero no-shows.</div>
+          <div class="pricing-price-box">
+            <span class="pricing-currency">$</span>
+            <span class="pricing-amount">59</span>
+            <span class="pricing-period">/ month billed yearly</span>
+          </div>
+          <div class="pricing-feature-list">
+            <div class="pricing-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Up to 6 Provider calendar seats</div>
+            <div class="pricing-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Automated SMS & WhatsApp alerts</div>
+            <div class="pricing-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Stripe & PayPal payments / deposits</div>
+            <div class="pricing-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Team Round-Robin routing</div>
+            <div class="pricing-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Booking analytics & exportable reports</div>
+          </div>
+          <a href="register.html" class="btn btn-primary w-100">Start 14-Day Free Trial</a>
+        </div>
+
+        <!-- Business Plan -->
+        <div class="pricing-card">
+          <div class="pricing-plan-name">Business</div>
+          <div class="pricing-plan-desc">For multi-location medical centers, financial firms, and large agencies.</div>
+          <div class="pricing-price-box">
+            <span class="pricing-currency">$</span>
+            <span class="pricing-amount">129</span>
+            <span class="pricing-period">/ month billed yearly</span>
+          </div>
+          <div class="pricing-feature-list">
+            <div class="pricing-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Unlimited staff provider seats</div>
+            <div class="pricing-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Multi-location branch management</div>
+            <div class="pricing-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> HIPAA Compliance & BAA signing</div>
+            <div class="pricing-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> SAML SSO & custom permissions</div>
+            <div class="pricing-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Dedicated Account Manager & SLA</div>
+          </div>
+          <a href="register.html" class="btn btn-secondary w-100">Start 14-Day Free Trial</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       PRICING — SECTION 3: PLAN COMPARISON TABLE
+       =================================================================== -->
+  <section class="section section-subtle">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag">Detailed Breakdown</span>
+        <h2 class="section-title">Compare All Features Side-by-Side</h2>
+        <p class="section-subtitle">Every tier is backed by our 99.98% calendar sync guarantee and 24/7 technical support.</p>
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature Capability</th>
+              <th>Starter ($24)</th>
+              <th>Professional ($59)</th>
+              <th>Business ($129)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Provider Calendar Seats</strong></td>
+              <td>1 Seat</td>
+              <td>Up to 6 Seats</td>
+              <td>Unlimited Seats</td>
+            </tr>
+            <tr>
+              <td><strong>2-Way Google & Outlook Sync</strong></td>
+              <td>✓ Included</td>
+              <td>✓ Included</td>
+              <td>✓ Included</td>
+            </tr>
+            <tr>
+              <td><strong>SMS & WhatsApp 1-Click Alerts</strong></td>
+              <td>—</td>
+              <td>✓ Included (500/mo)</td>
+              <td>✓ Unlimited</td>
+            </tr>
+            <tr>
+              <td><strong>Online Payments & Deposits</strong></td>
+              <td>—</td>
+              <td>✓ Stripe & PayPal</td>
+              <td>✓ Stripe, PayPal & Invoicing</td>
+            </tr>
+            <tr>
+              <td><strong>Team Round-Robin Routing</strong></td>
+              <td>—</td>
+              <td>✓ Included</td>
+              <td>✓ Included</td>
+            </tr>
+            <tr>
+              <td><strong>HIPAA BAA Agreement</strong></td>
+              <td>—</td>
+              <td>Optional Add-on</td>
+              <td>✓ Included</td>
+            </tr>
+            <tr>
+              <td><strong>Custom Booking Form Fields</strong></td>
+              <td>Basic fields</td>
+              <td>Dynamic logic</td>
+              <td>Full custom logic & uploads</td>
+            </tr>
+            <tr>
+              <td><strong>Technical Support SLA</strong></td>
+              <td>Email (24h)</td>
+              <td>Priority Live Chat (2h)</td>
+              <td>Dedicated Slack & 1h SLA</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       PRICING — SECTION 4: ENTERPRISE ROI SPOTLIGHT (Clean Centered Showcase)
+       =================================================================== -->
+  <section class="section pricing-roi-section" id="pricingRoiSection">
+    <div class="container">
+      <!-- Centered Simple Header -->
+      <div class="section-header text-center" style="max-width: 680px; margin-inline: auto; margin-bottom: 2.5rem;">
+        <span class="badge-tag">Return on Investment</span>
+        <h2 class="section-title">Maximize Revenue with Intelligent Booking</h2>
+        <p class="section-subtitle">
+          SyncPoint pays for itself within 12 days through automated deposits, reduced no-shows, and zero commission fees.
+        </p>
+      </div>
+
+      <!-- Elevated Dashboard Spotlight Card -->
+      <div class="roi-spotlight-wrapper">
+        <div class="roi-spotlight-glow"></div>
+        <div class="roi-visual-card roi-spotlight-card">
+          <!-- Floating telemetry pill top-left -->
+          <div class="roi-floating-pill pill-top">
+            <span class="pulse-indicator"></span>
+            <span>Live Telemetry: <strong>99.4% Slot Occupancy</strong></span>
+          </div>
+
+          <!-- Dashboard Preview Image -->
+          <img src="assets/images/pricing-roi-dashboard.jpg" alt="SyncPoint Enterprise Scheduling ROI and Revenue Telemetry Dashboard" class="roi-dashboard-image" loading="lazy" width="1024" height="768">
+
+          <!-- Floating telemetry pill bottom-right -->
+          <div class="roi-floating-pill pill-bottom">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+            <span>Payback Velocity: <strong>&lt; 12 Days</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clean 4-Column Horizontal Simple Stats Bar -->
+      <div class="roi-stats-strip">
+        <div class="roi-stat-box">
+          <div class="roi-stat-num text-gradient-primary">4.5x</div>
+          <div class="roi-stat-text">Average Net ROI</div>
+        </div>
+        <div class="roi-stat-divider"></div>
+        <div class="roi-stat-box">
+          <div class="roi-stat-num text-gradient-accent">$2.8M</div>
+          <div class="roi-stat-text">Secured Upfront Deposits</div>
+        </div>
+        <div class="roi-stat-divider"></div>
+        <div class="roi-stat-box">
+          <div class="roi-stat-num">78%</div>
+          <div class="roi-stat-text">Slot Capacity Utilization</div>
+        </div>
+        <div class="roi-stat-divider"></div>
+        <div class="roi-stat-box">
+          <div class="roi-stat-num text-gradient-primary">0%</div>
+          <div class="roi-stat-text">Commission Surcharges</div>
+        </div>
+      </div>
+
+      <!-- Simple Action Buttons Centered -->
+      <div class="roi-action-center text-center">
+        <a href="register.html" class="btn btn-primary btn-lg">Start 14-Day Free Trial</a>
+        <a href="contact.html" class="btn btn-outline btn-lg">Schedule Demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       PRICING — SECTION 5: PRICING FAQS
+       =================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag">Common Questions</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Have questions before upgrading? Here are honest, direct answers.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button type="button" class="faq-question">
+            <span>Is there a free trial, and does it require a credit card?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            Yes! All plans include a 14-day risk-free trial. You do not need to enter a credit card to get started and test all automated appointment workflows.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Can I change or cancel my plan at any time?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            Absolutely. You can upgrade, downgrade, or cancel your subscription at any time directly inside the billing settings of your dashboard.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Does SyncPoint take a commission or fee on client booking payments?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            Zero percent. We never take a cut of your earnings. You only pay standard merchant processing rates directly to Stripe or PayPal.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Is SyncPoint compliant with HIPAA for medical clinics?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            Yes. Our Business tier includes a formal Business Associate Agreement (BAA) and enforces end-to-end encryption for protected health information.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       PRICING — SECTION 6: FINAL CTA AND FOOTER
+       =================================================================== -->
+  <section class="section section-subtle">
+    <div class="container">
+      <div class="cta-banner-wrapper">
+        <div class="cta-banner-container text-center">
+          <div>
+            <h2 class="cta-title">Start Your Free 14-Day Trial Today</h2>
+            <p class="cta-subtitle">Set up your booking link in under three minutes and experience zero scheduling headaches.</p>
+            <div class="d-flex gap-3 flex-wrap justify-content-center">
+              <a href="register.html" class="btn btn-lg" style="background:#fff; color:#1e1b4b; font-weight:700;">Start Free Trial</a>
+              <a href="contact.html" class="btn btn-lg btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.4);">Contact Sales</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <svg class="brand-logo-svg" viewBox="0 0 198 56" height="42" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SyncPoint">
+              <g class="sp-icon-group" filter="url(#spGlowPrice)">
+            <rect x="8" y="10" width="40" height="36" rx="9" fill="url(#spCalGradPrice)" />
+            <rect x="17" y="5" width="4" height="10" rx="2" fill="#00D2FF" />
+            <rect x="33" y="5" width="4" height="10" rx="2" fill="#38BDF8" />
+            <rect x="13.5" y="21" width="29" height="19" rx="4" fill="#FFFFFF" fill-opacity="0.96" />
+            <rect x="17.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="25" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="17.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="25.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <rect x="33.5" y="31" width="4.5" height="4" rx="1.2" fill="#3B82F6" />
+            <path d="M 4 33 C 4 48, 22 55, 45 47 C 52 44, 56 39, 57 34" stroke="url(#spOrbitGradPrice)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <circle cx="44" cy="40" r="8.5" fill="#0066FF" stroke="#FFFFFF" stroke-width="2.5" />
+            <path d="M 40.5 40 L 43 42.5 L 48 37.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <text x="64" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-sync">Sync</text>
+          <text x="126" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">Po</text>
+          <rect x="160.5" y="21" width="4.5" height="14" rx="1.5" class="sp-pin-fill" fill="#0066FF" />
+          <path d="M 162.75 9 C 160.2 9, 158.2 11, 158.2 13.5 C 158.2 16.5, 162.75 19.5, 162.75 19.5 C 162.75 19.5, 167.3 16.5, 167.3 13.5 C 167.3 11, 165.3 9, 162.75 9 Z" class="sp-pin-fill" fill="#0066FF" />
+          <circle cx="162.75" cy="13.2" r="1.6" fill="#FFFFFF" />
+          <text x="169" y="35" font-family="'Outfit', -apple-system, sans-serif" font-weight="800" font-size="26" letter-spacing="-0.03em" class="sp-text-point">nt</text>
+          <text x="66" y="49" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="600" font-size="8.5" letter-spacing="0.1em" class="sp-tagline">Schedule <tspan fill="#0066FF">•</tspan> Manage <tspan fill="#0066FF">•</tspan> Grow</text>
+            </svg>
+          </a>
+          <p>The enterprise-grade appointment scheduling automation SaaS built for clinics, advisors, studios, and service teams worldwide.</p>
+          <div class="footer-socials" aria-label="Social media links">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Follow SyncPoint on X (Twitter)" title="X (Twitter)">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 24.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Connect with SyncPoint on LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+              </svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="SyncPoint on GitHub" title="GitHub">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+              </svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="SyncPoint on YouTube" title="YouTube">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+          </div>
+          <div class="footer-trust-badge">
+            <span class="trust-shield">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+            <span>HIPAA BAA &amp; SOC 2 Type II Certified</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul class="footer-links-list">
+            <li><a href="features.html" class="footer-link">Calendar Sync</a></li>
+            <li><a href="features.html" class="footer-link">Automated SMS Reminders</a></li>
+            <li><a href="features.html" class="footer-link">Team Round-Robin</a></li>
+            <li><a href="pricing.html" class="footer-link">Pricing Plans</a></li>
+            <li><a href="dashboard/index.html" class="footer-link">Client Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html" class="footer-link">Home 1 (Automation)</a></li>
+            <li><a href="home-2.html" class="footer-link">Home 2 (Enterprise)</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact &amp; Support</a></li>
+            <li><a href="login.html" class="footer-link">Business Portal Login</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal &amp; Trust</h4>
+          <ul class="footer-links-list">
+            <li><a href="contact.html" class="footer-link">HIPAA BAA Policy</a></li>
+            <li><a href="contact.html" class="footer-link">SOC 2 Compliance</a></li>
+            <li><a href="contact.html" class="footer-link">Privacy Statement</a></li>
+            <li><a href="contact.html" class="footer-link">Terms of Service</a></li>
+            <li><a href="contact.html" class="footer-link">Security Whitepaper</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">&copy; 2026 SyncPoint SaaS Technologies Inc. All rights reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="about.html" class="footer-link">Company</a>
+          <a href="pricing.html" class="footer-link">Plans</a>
+          <a href="contact.html" class="footer-link status-pill">
+            <span class="status-indicator"></span>
+            Status: Operational
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="back-to-top" id="backToTopBtn" aria-label="Scroll to top"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
