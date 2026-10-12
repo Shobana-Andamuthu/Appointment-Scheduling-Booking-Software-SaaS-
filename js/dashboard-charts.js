@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revenue: '$39,600'
       },
       '30d': {
-        labels: ['Week 1 (Oct 1-7)', 'Week 2 (Oct 8-14)', 'Week 3 (Oct 15-21)', 'Week 4 (Oct 22-28)', 'Week 5 (Oct 29-31)'],
+        labels: ['Oct 1–7', 'Oct 8–14', 'Oct 15–21', 'Oct 22–28', 'Oct 29–31'],
         bookings: [340, 412, 385, 460, 255],
         attendance: [308, 375, 346, 415, 230],
         total: '1,452',
@@ -153,6 +153,12 @@ document.addEventListener('DOMContentLoaded', () => {
             boxPadding: 6,
             usePointStyle: true,
             callbacks: {
+              title: function(items) {
+                if (items && items.length > 0) {
+                  return `Week ${items[0].dataIndex + 1}: ${items[0].label}`;
+                }
+                return '';
+              },
               label: function(context) {
                 const label = context.dataset.label || '';
                 const value = context.parsed.y;
@@ -170,7 +176,10 @@ document.addEventListener('DOMContentLoaded', () => {
             ticks: {
               color: themeColors.textColor,
               font: { family: "'Plus Jakarta Sans', sans-serif", size: 11, weight: '500' },
-              padding: 8
+              padding: 6,
+              maxRotation: 0,
+              autoSkip: true,
+              autoSkipPadding: 8
             }
           },
           y: {
