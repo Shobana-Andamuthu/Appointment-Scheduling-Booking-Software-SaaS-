@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('syncpoint_theme');
 
   function applyTheme(theme) {
+    document.documentElement.classList.add('disable-transitions');
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('syncpoint_theme', theme);
 
@@ -31,6 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.setAttribute('title', 'Switch to dark mode');
       }
     });
+
+    void document.documentElement.offsetHeight;
+    setTimeout(() => {
+      document.documentElement.classList.remove('disable-transitions');
+    }, 60);
   }
 
   const initialTheme = savedTheme ? savedTheme : (prefersDark.matches ? 'dark' : 'light');
@@ -51,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedDir = localStorage.getItem('syncpoint_dir') || 'ltr';
 
   function applyDirection(dir) {
+    document.documentElement.classList.add('disable-transitions');
     document.documentElement.setAttribute('dir', dir);
     document.documentElement.setAttribute('lang', dir === 'rtl' ? 'ar' : 'en');
     localStorage.setItem('syncpoint_dir', dir);
@@ -62,6 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       btn.setAttribute('aria-label', dir === 'rtl' ? 'Switch to Left to Right layout' : 'Switch to Right to Left layout');
     });
+
+    void document.documentElement.offsetHeight;
+    setTimeout(() => {
+      document.documentElement.classList.remove('disable-transitions');
+    }, 60);
   }
 
   applyDirection(savedDir);

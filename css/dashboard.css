@@ -4,6 +4,37 @@
    staff availability, customer bookings, and analytics.
    =================================================================== */
 
+/* Suppress all transitions & animations during direction/theme toggling to prevent shadow flicker */
+html.disable-transitions,
+html.disable-transitions *,
+html.disable-transitions *::before,
+html.disable-transitions *::after {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Prevent SVG brand logos from being scrambled or reversed in RTL */
+.brand-logo-svg,
+.brand-logo svg,
+.topbar-logo svg,
+[dir="rtl"] .brand-logo-svg,
+[dir="rtl"] .brand-logo svg,
+[dir="rtl"] .topbar-logo svg {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+}
+
+.brand-logo-svg text,
+.brand-logo svg text,
+.topbar-logo svg text,
+[dir="rtl"] .brand-logo-svg text,
+[dir="rtl"] .brand-logo svg text,
+[dir="rtl"] .topbar-logo svg text {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+  text-anchor: start !important;
+}
+
 .dashboard-layout {
   display: flex;
   min-height: 100vh;
@@ -184,6 +215,56 @@
   gap: 1rem;
 }
 
+.topbar-logo {
+  display: none;
+  align-items: center;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.topbar-logo svg {
+  height: 28px;
+  width: auto;
+  max-width: 130px;
+}
+
+.dash-logout-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  color: var(--text-light);
+  border: 1px solid var(--border-card);
+  background-color: var(--bg-card);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.dash-logout-btn:hover {
+  color: var(--danger) !important;
+  background-color: var(--danger-light) !important;
+  border-color: var(--danger) !important;
+}
+
+@media (max-width: 1200px) {
+  .topbar-logo {
+    display: inline-flex !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar-logo svg {
+    height: 25px;
+    max-width: 105px;
+  }
+  .dash-logout-btn {
+    width: 34px;
+    height: 34px;
+  }
+}
+
 .topbar-search {
   position: relative;
   width: min(320px, 40vw);
@@ -238,13 +319,13 @@
   gap: 1.25rem;
 }
 
-@media (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1200px) {
   .stats-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   .stats-grid {
     grid-template-columns: 1fr !important;
     gap: 1rem;
@@ -362,8 +443,16 @@
 }
 
 /* Modern Dashboard Tables */
+.table-responsive {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .dash-table {
   width: 100%;
+  min-width: 620px;
   border-collapse: separate;
   border-spacing: 0;
   margin: 0;
@@ -684,39 +773,238 @@
   box-shadow: 0 0 0 3px var(--primary-glow);
 }
 
-/* Responsiveness for Dashboard */
-@media (max-width: 1024px) {
+/* Dashboard Sidebar Toggle & Desktop/Tablet/Mobile Layout Rules */
+#dashMenuToggle {
+  display: none;
+}
+
+/* Desktop (> 1200px) rules for persistent sidebar and RTL */
+@media (min-width: 1201px) {
   .dashboard-sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    transform: translateX(-100%);
-    z-index: 1200;
+    position: sticky !important;
+    top: 0 !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    border-right: 1px solid var(--border-subtle) !important;
   }
 
   [dir="rtl"] .dashboard-sidebar {
-    left: auto;
-    right: 0;
-    transform: translateX(100%);
+    border-right: none !important;
+    border-left: 1px solid var(--border-subtle) !important;
   }
 
-  .dashboard-sidebar.open {
-    transform: translateX(0);
+  .topbar-logo {
+    display: none !important;
   }
 
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+  #dashMenuToggle {
+    display: none !important;
   }
 }
 
-@media (max-width: 640px) {
+/* Responsiveness for Dashboard — iPad Pro & Tablet (<= 1200px) */
+@media (max-width: 1200px) {
+  #dashMenuToggle {
+    display: inline-flex !important;
+  }
+
+  .topbar-logo {
+    display: inline-flex !important;
+  }
+
+  .dashboard-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100% !important;
+    transform: translateX(-100%) !important;
+    z-index: 1200 !important;
+    box-shadow: var(--shadow-xl) !important;
+    transition: transform var(--transition-normal), visibility 0.25s ease !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  [dir="rtl"] .dashboard-sidebar {
+    left: auto !important;
+    right: 0 !important;
+    transform: translateX(100%) !important;
+    border-left: none !important;
+    border-right: 1px solid var(--border-subtle) !important;
+  }
+
+  .dashboard-sidebar.open,
+  [dir="rtl"] .dashboard-sidebar.open {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  .dashboard-main {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Full width for major analytical overview cards on tablet */
+  .row > .col-lg-8,
+  .row > .col-lg-12 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* When col-lg-8 is 100%, companion col-lg-4 on tablet is also full width */
+  .col-lg-8 ~ .col-lg-4 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* iPad Pro / Tablet mandatory: 2 cards per row for grid columns */
+  .row > .col-lg-6,
+  .row > .col-lg-3,
+  .row > .col-md-4,
+  .row > .col-md-6 {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    width: 50% !important;
+  }
+
+  .row > .col-lg-4:not(.col-lg-8 ~ .col-lg-4) {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    width: 50% !important;
+  }
+}
+
+/* Responsiveness for Dashboard — Mobile (<= 767px) */
+@media (max-width: 767px) {
+  /* Search bar and new appointment button hidden in header on mobile */
+  .dashboard-topbar .topbar-search {
+    display: none !important;
+  }
+
+  .dashboard-topbar .topbar-right .btn-primary,
+  .dashboard-topbar .topbar-right a.btn,
+  .dashboard-topbar .topbar-right button.btn {
+    display: none !important;
+  }
+
+  .dashboard-topbar {
+    padding: 0 0.85rem !important;
+    gap: 0.5rem !important;
+    height: 60px !important;
+  }
+
+  .topbar-left {
+    gap: 0.5rem !important;
+  }
+
+  .topbar-right {
+    gap: 0.5rem !important;
+  }
+
+  .dashboard-content {
+    padding: 1rem 0.85rem !important;
+    gap: 1.25rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .dashboard-content h1 {
+    font-size: 1.35rem !important;
+  }
+
   .stats-grid {
     grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    width: 100% !important;
   }
 
   .calendar-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+  }
+
+  /* 1 card per row on mobile, full width with zero side gaps */
+  .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+
+  .row > [class*="col-"] {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .dash-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .analytics-kpi-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .analytics-kpi-item {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .chart-canvas-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: 240px !important;
+  }
+
+  /* Staff availability card mobile optimizations */
+  .staff-item .dash-card .d-flex.justify-content-between.align-items-start {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.65rem !important;
+  }
+
+  .staff-item .rounded-3.p-3 {
+    padding: 0.75rem !important;
+  }
+
+  .staff-item .rounded-3.p-3 .d-flex.justify-content-between {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.2rem !important;
+    margin-bottom: 0.65rem !important;
+  }
+
+  .staff-item .rounded-3.p-3 .d-flex.justify-content-between:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .staff-item .d-flex.justify-content-end {
+    justify-content: stretch !important;
+  }
+
+  .staff-item .d-flex.justify-content-end .btn {
+    width: 100% !important;
   }
 }
 
@@ -754,4 +1042,188 @@
   position: relative;
   width: 100%;
   height: 260px;
+}
+
+/* ===================================================================
+   DARK THEME HIGH-CONTRAST & TEXT VISIBILITY RULES
+   Ensures all muted texts, labels, inputs, and small spans are crystal clear
+   =================================================================== */
+[data-theme="dark"] {
+  --text-main: #f8fafc;
+  --text-muted: #cbd5e1;
+  --text-light: #94a3b8;
+  --bg-main: #0b0f19;
+  --bg-subtle: #111827;
+  --bg-card: #151d2f;
+  --border-card: #243048;
+  --border-subtle: #1e293b;
+}
+
+/* Overrule Bootstrap text-muted and secondary in dark mode */
+[data-theme="dark"] .text-muted,
+[data-theme="dark"] .text-secondary {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .text-light,
+[data-theme="dark"] .form-text,
+[data-theme="dark"] small,
+[data-theme="dark"] .small {
+  color: #cbd5e1 !important;
+}
+
+/* Form labels and headings */
+[data-theme="dark"] .form-label,
+[data-theme="dark"] label {
+  color: #f1f5f9 !important;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .dash-card-title,
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .dash-card-header span {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .fw-bold,
+[data-theme="dark"] strong {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .dashboard-content p {
+  color: #cbd5e1 !important;
+}
+
+/* Universal high-contrast input placeholders */
+::placeholder,
+input::placeholder,
+textarea::placeholder,
+select::placeholder,
+.form-control::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1 !important;
+}
+
+[data-theme="dark"] ::placeholder,
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder,
+[data-theme="dark"] select::placeholder,
+[data-theme="dark"] .form-control::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #94a3b8 !important;
+}
+
+/* Input fields and selects */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]),
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background-color: #111827 !important;
+  color: #f8fafc !important;
+  border-color: #243048 !important;
+  color-scheme: dark;
+}
+
+[data-theme="dark"] .form-control:focus,
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus {
+  background-color: #111827 !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.35) !important;
+}
+
+[data-theme="dark"] input[type="time"],
+[data-theme="dark"] input[type="date"] {
+  color: #f8fafc !important;
+  color-scheme: dark;
+}
+
+[data-theme="dark"] .form-group small,
+[data-theme="dark"] small[style*="color:var(--text-light)"],
+[data-theme="dark"] span[style*="color:var(--text-light)"] {
+  color: #cbd5e1 !important;
+}
+
+/* Time separator 'to' and inline spans */
+[data-theme="dark"] .dash-card span:not([class*="badge"]) {
+  color: #cbd5e1;
+}
+
+/* Operating hours and bordered item boxes */
+[data-theme="dark"] .dash-card .border,
+[data-theme="dark"] .rounded-2.border,
+[data-theme="dark"] .rounded-3.border {
+  border-color: #243048 !important;
+  background-color: rgba(30, 41, 59, 0.5) !important;
+}
+
+/* Enhanced contrast badges in dark mode */
+[data-theme="dark"] .badge[style*="background:var(--danger-light)"],
+[data-theme="dark"] .badge.bg-danger-subtle {
+  background: rgba(239, 68, 68, 0.22) !important;
+  color: #fca5a5 !important;
+}
+
+[data-theme="dark"] .badge[style*="background:var(--success-light)"],
+[data-theme="dark"] .badge.bg-success-subtle {
+  background: rgba(16, 185, 129, 0.22) !important;
+  color: #6ee7b7 !important;
+}
+
+[data-theme="dark"] .badge[style*="background:var(--primary-light)"],
+[data-theme="dark"] .badge.bg-primary-subtle {
+  background: rgba(59, 130, 246, 0.25) !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .badge[style*="background:var(--warning-light)"],
+[data-theme="dark"] .badge.bg-warning-subtle {
+  background: rgba(245, 158, 11, 0.22) !important;
+  color: #fcd34d !important;
+}
+
+[data-theme="dark"] .badge[style*="background:var(--bg-subtle)"] {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #cbd5e1 !important;
+}
+
+/* Data tables in dark mode */
+[data-theme="dark"] .dash-table thead th {
+  background-color: #111827 !important;
+  color: #cbd5e1 !important;
+  border-color: #243048 !important;
+}
+
+[data-theme="dark"] .dash-table tbody td {
+  color: #f8fafc !important;
+  border-color: #1e293b !important;
+}
+
+[data-theme="dark"] .dash-table tbody tr:hover td {
+  background-color: #1e293b !important;
+}
+
+/* Calendar elements in dark mode */
+[data-theme="dark"] .calendar-day-col {
+  background-color: #151d2f !important;
+}
+
+[data-theme="dark"] .calendar-day-head {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .calendar-grid {
+  background-color: #243048 !important;
+  border-color: #243048 !important;
 }
