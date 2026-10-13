@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function applyTheme(theme) {
     document.documentElement.classList.add('disable-transitions');
     document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute('data-bs-theme', theme);
+    if (document.body) {
+      document.body.setAttribute('data-theme', theme);
+      document.body.setAttribute('data-bs-theme', theme);
+    }
     localStorage.setItem('syncpoint_theme', theme);
 
     themeToggleBtns.forEach(btn => {
@@ -398,22 +403,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = `p-3 rounded-3 text-start w-100 bpm-service-item ${idx === 0 ? 'active' : ''}`;
-        btn.style.cssText = idx === 0 
-          ? 'background:var(--primary-light); border:1.5px solid var(--primary); color:var(--primary); transition:all 0.2s;'
-          : 'background:var(--bg-subtle); border:1px solid var(--border-card); color:var(--text-main); transition:all 0.2s;';
-        btn.innerHTML = `<div class="d-flex justify-content-between align-items-center"><strong>${s.name}</strong><span class="badge bg-primary-subtle text-primary fw-bold">${s.price}</span></div><div class="small text-muted mt-1">${s.desc}</div>`;
+        btn.innerHTML = `<div class="d-flex justify-content-between align-items-center"><strong class="bpm-service-title">${s.name}</strong><span class="badge bpm-price-badge fw-bold">${s.price}</span></div><div class="bpm-service-desc mt-1">${s.desc}</div>`;
 
         btn.addEventListener('click', () => {
-          bpmServicesList.querySelectorAll('.bpm-service-item').forEach(b => {
-            b.classList.remove('active');
-            b.style.background = 'var(--bg-subtle)';
-            b.style.borderColor = 'var(--border-card)';
-            b.style.color = 'var(--text-main)';
-          });
+          bpmServicesList.querySelectorAll('.bpm-service-item').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          btn.style.background = 'var(--primary-light)';
-          btn.style.borderColor = 'var(--primary)';
-          btn.style.color = 'var(--primary)';
           modalSelectedService = s.name;
         });
 
@@ -429,22 +423,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = `p-2 rounded-2 text-center bpm-slot-item ${idx === 0 ? 'active' : ''}`;
-        btn.style.cssText = idx === 0
-          ? 'background:var(--primary); color:#fff; border:1px solid var(--primary); font-weight:600; font-size:0.85rem; transition:all 0.2s;'
-          : 'background:var(--bg-card); border:1px solid var(--border-card); font-weight:600; font-size:0.85rem; color:var(--text-main); transition:all 0.2s;';
         btn.textContent = slot;
 
         btn.addEventListener('click', () => {
-          bpmSlotsList.querySelectorAll('.bpm-slot-item').forEach(b => {
-            b.classList.remove('active');
-            b.style.background = 'var(--bg-card)';
-            b.style.borderColor = 'var(--border-card)';
-            b.style.color = 'var(--text-main)';
-          });
+          bpmSlotsList.querySelectorAll('.bpm-slot-item').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          btn.style.background = 'var(--primary)';
-          btn.style.borderColor = 'var(--primary)';
-          btn.style.color = '#ffffff';
           modalSelectedSlot = slot;
         });
 
@@ -474,6 +457,27 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bpmSuccessState) bpmSuccessState.style.display = 'none';
     });
   }
+
+  // Handle Close / Dismiss click in Booking Preview Modal
+  const bpmCloseBtns = previewModalEl ? previewModalEl.querySelectorAll('.modal-close-btn, #bookingModalCloseBtn, [data-bs-dismiss="modal"]') : [];
+  bpmCloseBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+        const modalInstance = bootstrap.Modal.getInstance(previewModalEl) || bootstrap.Modal.getOrCreateInstance(previewModalEl);
+        if (modalInstance) {
+          modalInstance.hide();
+        }
+      }
+      previewModalEl.classList.remove('show');
+      previewModalEl.style.display = 'none';
+      previewModalEl.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      document.body.style.removeProperty('padding-right');
+      document.body.style.removeProperty('overflow');
+      document.querySelectorAll('.modal-backdrop').forEach(bd => bd.remove());
+    });
+  });
 
   // Bind click on all Industry Cards (.ind2-card)
   const industryCards = document.querySelectorAll('.ind2-card');

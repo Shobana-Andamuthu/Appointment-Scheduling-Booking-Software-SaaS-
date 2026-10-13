@@ -39,8 +39,6 @@ html.disable-transitions *::after {
   display: flex;
   min-height: 100vh;
   background-color: var(--bg-subtle);
-  max-width: 100vw;
-  overflow-x: hidden;
 }
 
 /* Sidebar */
@@ -196,21 +194,27 @@ html.disable-transitions *::after {
   flex-direction: column;
   min-width: 0;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .dashboard-topbar {
   height: var(--nav-height);
-  background-color: var(--bg-card);
+  background-color: var(--bg-card) !important;
   border-bottom: 1px solid var(--border-subtle);
   padding: 0 clamp(1rem, 3vw, 2rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  position: sticky;
-  top: 0;
-  z-index: 90;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] .dashboard-topbar {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  background-color: var(--bg-card) !important;
 }
 
 .topbar-left {
@@ -727,6 +731,50 @@ html.disable-transitions *::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.close-modal-btn,
+.close-resched-modal,
+.close-staff-modal {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  border-radius: var(--radius-full) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: var(--bg-card) !important;
+  border: 1.5px solid var(--border-subtle) !important;
+  color: var(--text-main) !important;
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.close-modal-btn:hover,
+.close-resched-modal:hover,
+.close-staff-modal:hover {
+  background-color: var(--bg-subtle) !important;
+  color: var(--danger) !important;
+  border-color: var(--danger) !important;
+  transform: rotate(90deg) scale(1.08) !important;
+}
+
+[data-theme="dark"] .close-modal-btn,
+[data-theme="dark"] .close-resched-modal,
+[data-theme="dark"] .close-staff-modal {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .close-modal-btn:hover,
+[data-theme="dark"] .close-resched-modal:hover,
+[data-theme="dark"] .close-staff-modal:hover {
+  background-color: #334155 !important;
+  color: #ef4444 !important;
+  border-color: #ef4444 !important;
 }
 
 .modal-body {
